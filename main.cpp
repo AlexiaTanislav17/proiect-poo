@@ -27,11 +27,11 @@ public:
     }
 
 
-    void setNumeStudent(string nume) { this->nume = nume; }
+    void setNumeStudent(string n) { nume = n; }
     string getNumeStudent() { return nume; }
-    void setPrenumeStudent(string prenume) { this->prenume = prenume; }
+    void setPrenumeStudent(string p) { prenume = p; }
     string getPrenumeStudent() { return prenume; }
-    void setEmailStudent(string email) { this->email = email; }
+    void setEmailStudent(string e) { email = e; }
     string getEmailStudent() { return email; }
 
 };
@@ -57,20 +57,68 @@ public:
     }
 
 
-    void setNumeTeacher(string nume) { this->nume = nume; }
+    void setNumeTeacher(string n) { nume = n; }
     string getNumeTeacher() { return nume; }
-    void setPrenumeTeacher(string prenume) { this->prenume = prenume; }
+    void setPrenumeTeacher(string p) { prenume = p; }
     string getPrenumeTeacher() { return prenume; }
-    void setEmailTeacher(string email) { this->email = email; }
+    void setEmailTeacher(string e) { email = e; }
     string getEmailTeacher() { return email; }
 
 };
 
 
+class Group{
+private:
+    int codUnic;
+    string title;
+    string numeProfesor;
+    string prenumeProfesor;
+    array<string,100> studentiGrupa;
+    int nrStudenti;
+public:
+
+    Group(int c, string t, string np, string pp) {
+        codUnic = c;
+        title = t;
+        numeProfesor = np;
+        prenumeProfesor = pp;
+        nrStudenti = 0;
+    }
+
+    ~Group() {
+        codUnic = 0;
+        title.clear();
+        numeProfesor.clear();
+        prenumeProfesor.clear();
+        nrStudenti = 0;
+    }
+
+
+    void setCodUnicGrupa(int c) { codUnic = c; }
+    int getCodUnicGrupa() { return codUnic; }
+    void setTitleGroup(string t) { title = t; }
+    string getTitleGroup() { return title; }
+    void setNumeProfesorGroup(string np) { numeProfesor = np; }
+    string getNumeProfesorGroup() { return numeProfesor; }
+    void setPrenumeProfesorGroup(string pp) { prenumeProfesor = pp; }
+    string getPrenumeProfesorGroup() { return prenumeProfesor; }
+    void intratInGrupa(){ nrStudenti++; }
+    void iesitDinGrupa(){
+        if (nrStudenti>0){
+            nrStudenti--;
+        }
+    }
+//    void studentInscris(string n, string p){
+//        //trebuie sa vad cum inscriu un student ca nu stiu cum
+//    }
+
+};
+
 
 int main() {
 
-    string tipCont, Nume, Prenume, Email;
+    string tipCont, Nume, Prenume, Email, r, Titlu;
+    int Cod;
 
     cout << "Student sau profesor? Scrie S pt student sau P pt profesor" << endl;
     cin >> tipCont;
@@ -86,6 +134,16 @@ int main() {
         student.setPrenumeStudent(Prenume);
         student.setEmailStudent(Email);
 
+        cout << "Vrei sa intrii intr-o clasa? Y/N" << endl;
+        cin >> r;
+        if (r=="Y" || r=="y"){
+            //trb sa afisez optiunile pt clase din array nu stiu care
+            //si in functie de ce alegi trb sa introduci corect codul clasei
+            //si sa fiu adaugat la nr de studenti idn cls
+            //si ar trb sa am si un array in care sa arate in ce clase sunt
+        } else {
+            cout << "Vrei sa iesi dintr-o clasa? Y/N" << endl;
+        }
     } else {
         if (tipCont=="P" || tipCont=="p"){
             cout << "Introdu numele: "<< endl;
@@ -98,8 +156,23 @@ int main() {
             teacher.setNumeTeacher(Nume);
             teacher.setPrenumeTeacher(Prenume);
             teacher.setEmailTeacher(Email);
+
+            cout << "Vrei sa creezi o clasa? Y/N" << endl;
+            cin >> r;
+            if (r=="Y" || r=="y"){
+                Group grupa(0, "titlu", " ", " ");
+                grupa.setNumeProfesorGroup(teacher.getNumeTeacher());
+                grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
+                cout << "Introdu titlul clasei: "<< endl;
+                cin >> Titlu;
+                cout << "Introdu codul pt participanti: "<< endl;
+                cin >> Cod;
+                grupa.setCodUnicGrupa(Cod);
+            }
         } else {
             cout << "Se pare ca nu ai introdus datele corect, te rog mai incearca o data!" << endl;
+            // trb defapt sa o fac functie ca sa mearga dar vad eu asta cum
+            // vreau ma intai sa mearga putin cate putin
         }
     }
 
