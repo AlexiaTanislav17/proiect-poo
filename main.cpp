@@ -1,48 +1,108 @@
 #include <iostream>
 #include <array>
+#include <string>
+using namespace std;
+
+// APLICATIE STIL GOOGLE CLASSROOM
+// inca nu stiu ce fac exact aici ca s functionalitati
+
+
+class Student{
+private:
+    string nume;
+    string prenume;
+    string email;
+public:
+
+    Student(string n=" ", string p=" ", string e=" ") {
+        nume = n;
+        prenume = p;
+        email = e;
+    }
+
+    ~Student() {
+        nume.clear();
+        prenume.clear();
+        email.clear();
+    }
+
+
+    void setNumeStudent(string nume) { this->nume = nume; }
+    string getNumeStudent() { return nume; }
+    void setPrenumeStudent(string prenume) { this->prenume = prenume; }
+    string getPrenumeStudent() { return prenume; }
+    void setEmailStudent(string email) { this->email = email; }
+    string getEmailStudent() { return email; }
+
+};
+
+
+class Teacher{
+private:
+    string nume;
+    string prenume;
+    string email;
+public:
+
+    Teacher(string n=" ", string p=" ", string e=" ") {
+        nume = n;
+        prenume = p;
+        email = e;
+    }
+
+    ~Teacher() {
+        nume.clear();
+        prenume.clear();
+        email.clear();
+    }
+
+
+    void setNumeTeacher(string nume) { this->nume = nume; }
+    string getNumeTeacher() { return nume; }
+    void setPrenumeTeacher(string prenume) { this->prenume = prenume; }
+    string getPrenumeTeacher() { return prenume; }
+    void setEmailTeacher(string email) { this->email = email; }
+    string getEmailTeacher() { return email; }
+
+};
+
+
 
 int main() {
-    std::cout << "Hello, world!\n";
-    std::array<int, 100> v{};
-    int nr;
-    std::cout << "Introduceți nr: ";
-    /////////////////////////////////////////////////////////////////////////
-    /// Observație: dacă aveți nevoie să citiți date de intrare de la tastatură,
-    /// dați exemple de date de intrare folosind fișierul tastatura.txt
-    /// Trebuie să aveți în fișierul tastatura.txt suficiente date de intrare
-    /// (în formatul impus de voi) astfel încât execuția programului să se încheie.
-    /// De asemenea, trebuie să adăugați în acest fișier date de intrare
-    /// pentru cât mai multe ramuri de execuție.
-    /// Dorim să facem acest lucru pentru a automatiza testarea codului, fără să
-    /// mai pierdem timp de fiecare dată să introducem de la zero aceleași date de intrare.
-    ///
-    /// Pe GitHub Actions (bife), fișierul tastatura.txt este folosit
-    /// pentru a simula date introduse de la tastatură.
-    /// Bifele verifică dacă programul are erori de compilare, erori de memorie și memory leaks.
-    ///
-    /// Dacă nu puneți în tastatura.txt suficiente date de intrare, îmi rezerv dreptul să vă
-    /// testez codul cu ce date de intrare am chef și să nu pun notă dacă găsesc vreun bug.
-    /// Impun această cerință ca să învățați să faceți un demo și să arătați părțile din
-    /// program care merg (și să le evitați pe cele care nu merg).
-    ///
-    /////////////////////////////////////////////////////////////////////////
-    std::cin >> nr;
-    /////////////////////////////////////////////////////////////////////////
-    for(int i = 0; i < nr; ++i) {
-        std::cout << "v[" << i << "] = ";
-        std::cin >> v[i];
+
+    string tipCont, Nume, Prenume, Email;
+
+    cout << "Student sau profesor? Scrie S pt student sau P pt profesor" << endl;
+    cin >> tipCont;
+    if (tipCont=="S" || tipCont=="s"){
+        cout << "Introdu numele: "<< endl;
+        cin >> Nume;
+        cout << "Introdu prenumele: "<< endl;
+        cin >> Prenume;
+        cout << "Introdu email-ul: "<< endl;
+        cin >> Email;
+        Student student;
+        student.setNumeStudent(Nume);
+        student.setPrenumeStudent(Prenume);
+        student.setEmailStudent(Email);
+
+    } else {
+        if (tipCont=="P" || tipCont=="p"){
+            cout << "Introdu numele: "<< endl;
+            cin >> Nume;
+            cout << "Introdu prenumele: "<< endl;
+            cin >> Prenume;
+            cout << "Introdu email-ul: "<< endl;
+            cin >> Email;
+            Teacher teacher;
+            teacher.setNumeTeacher(Nume);
+            teacher.setPrenumeTeacher(Prenume);
+            teacher.setEmailTeacher(Email);
+        } else {
+            cout << "Se pare ca nu ai introdus datele corect, te rog mai incearca o data!" << endl;
+        }
     }
-    std::cout << "\n\n";
-    std::cout << "Am citit de la tastatură " << nr << " elemente:\n";
-    for(int i = 0; i < nr; ++i) {
-        std::cout << "- " << v[i] << "\n";
-    }
-    ///////////////////////////////////////////////////////////////////////////
-    /// Pentru date citite din fișier, NU folosiți tastatura.txt. Creați-vă voi
-    /// alt fișier propriu cu ce alt nume doriți.
-    /// Exemplu:
-    /// std::ifstream fis("date.txt");
-    /// for(int i = 0; i < nr2; ++i)
-    ///     fis >> v2[i];
+
+
     return 0;
 }
