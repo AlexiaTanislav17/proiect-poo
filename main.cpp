@@ -35,7 +35,7 @@ public:
         return out;
     }
 
-    bool operator==(const Student& student){
+    bool operator==(const Student& student) const {
         if (nume == student.nume && prenume == student.prenume && email == student.email){
             return true;
         }
