@@ -5,6 +5,7 @@ using namespace std;
 
 // APLICATIE STIL GOOGLE CLASSROOM
 // inca nu stiu ce fac exact aici ca s functionalitati
+// tastatura txt sa nu uit de ea
 
 
 class Student{
@@ -15,10 +16,10 @@ private:
     //list<Group> grupe;
 public:
 
-    Student(string n=" ", string p=" ", string e=" ") {
-        nume = n;
-        prenume = p;
-        email = e;
+    Student(string nume=" ", string prenume=" ", string email=" ") {
+        this->nume = nume;
+        this->prenume = prenume;
+        this->email = email;
     }
 
     ~Student() {
@@ -60,10 +61,10 @@ private:
     // list<Group> grupe;
 public:
 
-    Teacher(string n=" ", string p=" ", string e=" ") {
-        nume = n;
-        prenume = p;
-        email = e;
+    Teacher(string nume=" ", string prenume=" ", string email=" ") {
+        this->nume = nume;
+        this->prenume = prenume;
+        this->email = email;
     }
 
     ~Teacher() {
@@ -140,11 +141,11 @@ public:
     void setPrenumeProfesorGroup(string pp) { prenumeProfesor = pp; }
     string getPrenumeProfesorGroup() { return prenumeProfesor; }
     void intratInGrupa(){ nrStudenti++; }
-//    void iesitDinGrupa(){
-//        if (nrStudenti>0){
-//            nrStudenti--;
-//        }
-//    }
+    void iesitDinGrupa(){
+        if (nrStudenti>0){
+            nrStudenti--;
+        }
+    }
 
     friend istream& operator>>(istream& in, Group& grupa){
         cout << "Titlu: ";
@@ -184,10 +185,11 @@ public:
     }
 };
 
-void dateTeacher(Teacher t){
-    t.setNumeTeacher("Marin");
-    t.setPrenumeTeacher("Maricica");
-    t.setEmailTeacher("m.m@gmail.com");
+
+void dateTeacher(Teacher t, string n, string p, string e){
+    t.setNumeTeacher(n);
+    t.setPrenumeTeacher(p);
+    t.setEmailTeacher(e);
 }
 
 bool operator==(const Group& g1, const Group& g2) {
@@ -197,26 +199,167 @@ bool operator==(const Group& g1, const Group& g2) {
     return false;
 }
 
-int main() {
+void deleteGroup(Teacher teacher, list<Group> grupe);
 
+void createGroup(Teacher teacher, list<Group> grupe) {
+    string rp;
+    Group grupa(0, " ", " ", " ");
+    grupa.setNumeProfesorGroup(teacher.getNumeTeacher());
+    grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
+    cin >> grupa;
+    grupe.push_back(grupa);
+    for (Group g : grupe){
+        cout << g;
+    }
+    cout << endl;
+    cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+    cin >> rp;
+    if (rp == "C" || rp=="c") {
+        createGroup(teacher, grupe);
+    } else {
+        if (rp == "D" || rp == "d"){
+            deleteGroup(teacher, grupe);
+        } else {
+            cout << "Ai iesit!";
+        }
+    }
+}
+
+void deleteGroup(Teacher teacher, list<Group> grupe){
+    int c;
+    string titluGrupa, npGrupa,  ppGrupa;
+    cout << "Introdu codul clasei pe care vrei sa o stergi: " << endl;
+    cin >> c;
+    for (Group g : grupe){
+        if (c == g.getCodUnicGrupa()){
+            titluGrupa = g.getTitleGroup();
+            npGrupa = g.getNumeProfesorGroup();
+            ppGrupa = g.getPrenumeProfesorGroup();
+        }
+    }
+    Group gt(0, " "," ", " ");
+    gt.setNumeProfesorGroup(npGrupa);
+    gt.setPrenumeProfesorGroup(ppGrupa);
+    gt.setTitleGroup(titluGrupa);
+    gt.setCodUnicGrupa(c);
+    grupe.remove(gt);
+    for (Group g : grupe){
+        cout << g;
+    }
+    string rp;
+    cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+    cin >> rp;
+    if (rp == "C" || rp=="c") {
+        createGroup(teacher, grupe);
+    } else {
+        if (rp == "D" || rp == "d"){
+            deleteGroup(teacher, grupe);
+        } else {
+            cout << "Ai iesit!";
+        }
+    }
+}
+
+void exitGroup(Student student, list<Group> grupe);
+
+void enterGroup(Student student, list<Group> grupe) {
+    int c;
+    string rp, titluGrupa, npGrupa, ppGrupa;
+    Group gt(0, " ", " ", "");
+    for (Group grupa : grupe){
+        cout << grupa;
+    }
+    cout << "In ce clasa vrei sa te inscrii? Scrie codul acesteia!" << endl;
+    cin >> c;
+    for (Group grupa : grupe){
+        if (grupa.getCodUnicGrupa() == c){
+            titluGrupa = grupa.getTitleGroup();
+            npGrupa = grupa.getNumeProfesorGroup();
+            ppGrupa = grupa.getPrenumeProfesorGroup();
+        }
+    }
+    gt.setNumeProfesorGroup(npGrupa);
+    gt.setPrenumeProfesorGroup(ppGrupa);
+    gt.setTitleGroup(titluGrupa);
+    gt.setCodUnicGrupa(c);
+    grupe.remove(gt);
+
+    gt += student;
+    gt.intratInGrupa();
+    grupe.push_back(gt);
+    for (Group grupa : grupe){
+        cout << grupa;
+    }
+    cout << endl;
+    cout << "Apasa I pt a intra intr-o clasa, E daca vrei sa iesi din una sau orice altceva ca sa iesi!" << endl;
+    cin >> rp;
+    if (rp == "I" || rp=="i") {
+        enterGroup(student, grupe);
+    } else {
+        if (rp == "E" || rp == "e"){
+            exitGroup(student, grupe);
+        } else {
+            cout << "Ai iesit!";
+        }
+    }
+}
+
+void exitGroup(Student student, list<Group> grupe) {
+    int c;
+    string rp, titluGrupa, npGrupa, ppGrupa;
+    Group gt(0, " ", " ", "");
+    for (Group grupa : grupe){
+        cout << grupa;
+    }
+    cout << "Din ce clasa vrei sa iesi? Scrie codul acesteia!" << endl;
+    cin >> c;
+    for (Group grupa : grupe){
+        if (grupa.getCodUnicGrupa() == c){
+            titluGrupa = grupa.getTitleGroup();
+            npGrupa = grupa.getNumeProfesorGroup();
+            ppGrupa = grupa.getPrenumeProfesorGroup();
+        }
+    }
+    gt.setNumeProfesorGroup(npGrupa);
+    gt.setPrenumeProfesorGroup(ppGrupa);
+    gt.setTitleGroup(titluGrupa);
+    gt.setCodUnicGrupa(c);
+    grupe.remove(gt);
+
+    gt -= student;
+    gt.iesitDinGrupa();
+    grupe.push_back(gt);
+
+    for (Group grupa : grupe){
+        cout << grupa;
+    }
+    cout << endl;
+    cout << "Apasa I pt a intra intr-o clasa, E daca vrei sa iesi din una sau orice altceva ca sa iesi!" << endl;
+    cin >> rp;
+    if (rp == "I" || rp=="i") {
+        enterGroup(student, grupe);
+    } else {
+        if (rp == "E" || rp == "e"){
+            exitGroup(student, grupe);
+        } else {
+            cout << "Ai iesit!";
+        }
+    }
+}
+
+void menu() {
     string tipCont, Nume, Prenume, Email, r, Titlu;
     string titluGrupa, npGrupa, ppGrupa;
     int Cod;
 
     Teacher teacher1;
-    teacher1.setNumeTeacher("Marin");
-    teacher1.setPrenumeTeacher("Maricica");
-    teacher1.setEmailTeacher("m.m@gmail.com");
+    dateTeacher(teacher1, "Marin", "Maricica", "m.m@gmail.com");
 
     Teacher teacher2;
-    teacher2.setNumeTeacher("Popescu");
-    teacher2.setPrenumeTeacher("Stefan");
-    teacher2.setEmailTeacher("p.s@gmail.com");
+    dateTeacher(teacher2, "Popescu", "Stefan", "p.s@gmail.com");
 
     Teacher teacher3;
-    teacher3.setNumeTeacher("Ion");
-    teacher3.setPrenumeTeacher("Cornela");
-    teacher3.setEmailTeacher("i.c@gmail.com");
+    dateTeacher(teacher3, "Ion", "Cornela", "i.c@gmail.com");
 
     Group grupa1(2345, "POO", "Marin", "Maricica");
     Group grupa2(3456, "Python", "Popescu", "Stefan");
@@ -239,38 +382,12 @@ int main() {
         student.setPrenumeStudent(Prenume);
         student.setEmailStudent(Email);
 
-        cout << "Vrei sa intrii intr-o clasa? Y/N" << endl;
+        cout << "Vrei sa intrii intr-o clasa? Y/N (daca scrii nu sau altceva ati iesit)" << endl;
         cin >> r;
         if (r=="Y" || r=="y"){
-            for (Group grupa : grupe){
-                cout << grupa;
-            }
-            //ar trb sa am si un array in care sa arate in ce clase sunt doar ca nu merge ca
-            //conteaza ordinea in care sunt definite clasele
-            cout << "In ce clasa vrei sa te inscrii? Scrie codul acesteia!" << endl;
-            cin >> Cod;
-            for (Group grupa : grupe){
-                if (grupa.getCodUnicGrupa() == Cod){
-                    titluGrupa = grupa.getTitleGroup();
-                    npGrupa = grupa.getNumeProfesorGroup();
-                    ppGrupa = grupa.getPrenumeProfesorGroup();
-                }
-            }
-            grupaTemporara.setNumeProfesorGroup(npGrupa);
-            grupaTemporara.setPrenumeProfesorGroup(ppGrupa);
-            grupaTemporara.setTitleGroup(titluGrupa);
-            grupaTemporara.setCodUnicGrupa(Cod);
-            grupe.remove(grupaTemporara);
-
-            grupaTemporara += student;
-            grupaTemporara.intratInGrupa();
-            grupe.push_back(grupaTemporara);
-            for (Group grupa : grupe){
-                cout << grupa;
-            }
+            enterGroup(student, grupe);
         } else {
-            cout << "Vrei sa iesi dintr-o clasa? Y/N" << endl;
-            //aici ar trb defapt mai multe optiuni, sa iti afiseze optiuni
+            cout << "Ai iesit!";
         }
     } else {
         if (tipCont=="P" || tipCont=="p"){
@@ -288,24 +405,19 @@ int main() {
             cout << "Vrei sa creezi o clasa? Y/N" << endl;
             cin >> r;
             if (r=="Y" || r=="y"){
-                Group grupa(0, " ", " ", " ");
-                grupa.setNumeProfesorGroup(teacher.getNumeTeacher());
-                grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
-                cin >> grupa;
-                cout << grupa;
-
-                //aici trb din nou sa intreb daca vrea sa mai creeze o clasa cred :')
-
+                createGroup(teacher, grupe);
             } else {
                 cout << "Din pacate nu aveti ce sa faceti mai mult de atat, aplicatia e inca in progres. Va astept la urmatorul update!";
             }
         } else {
             cout << "Se pare ca nu ai introdus datele corect, te rog mai incearca o data!" << endl;
-            // trb defapt sa o fac functie ca sa mearga dar vad eu asta cum
-            // vreau ma intai sa mearga putin cate putin
+            menu();
         }
     }
+}
 
+int main() {
 
+    menu();
     return 0;
 }
