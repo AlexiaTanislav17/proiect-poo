@@ -12,11 +12,7 @@ private:
     //list<Group> grupe;
 public:
 
-    Student(string nume=" ", string prenume=" ", string email=" ") {
-        this->nume = nume;
-        this->prenume = prenume;
-        this->email = email;
-    }
+    explicit Student(string n=" ", string p=" ", string e=" "): nume(n), prenume(p), email(e) {}
 
     ~Student() {
         nume.clear();
@@ -57,11 +53,7 @@ private:
     // list<Group> grupe;
 public:
 
-    Teacher(string nume=" ", string prenume=" ", string email=" ") {
-        this->nume = nume;
-        this->prenume = prenume;
-        this->email = email;
-    }
+    explicit Teacher(string n=" ", string p=" ", string e=" "): nume(n), prenume(p), email(e) {}
 
     ~Teacher() {
         nume.clear();
@@ -91,13 +83,7 @@ private:
     int nrStudenti;
 public:
 
-    Group(int c, string t, string np, string pp) {
-        codUnic = c;
-        title = t;
-        numeProfesor = np;
-        prenumeProfesor = pp;
-        nrStudenti = 0;
-    }
+    Group(int c, string t, string np, string pp): codUnic(c), title(t), numeProfesor(np), prenumeProfesor(pp), nrStudenti(0) {}
 
     Group(int &c, string &t, string &np, string &pp, list<Student> &ss) {
         codUnic = c;
