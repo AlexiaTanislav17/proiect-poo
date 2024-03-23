@@ -330,8 +330,7 @@ void exitGroup(Student student, list<Group> grupe) {
 }
 
 void menu() {
-    string tipCont, Nume, Prenume, Email, r, Titlu;
-    string titluGrupa, npGrupa, ppGrupa;
+    string tipCont, Nume, Prenume, Email, r;
 
     Teacher teacher1;
     dateTeacher(teacher1, "Marin", "Maricica", "m.m@gmail.com");
