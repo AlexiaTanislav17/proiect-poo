@@ -1,6 +1,6 @@
 #include <iostream>
-#include <array>
 #include <string>
+#include <list>
 using namespace std;
 
 // APLICATIE STIL GOOGLE CLASSROOM
@@ -12,6 +12,7 @@ private:
     string nume;
     string prenume;
     string email;
+    //list<Group> grupe;
 public:
 
     Student(string n=" ", string p=" ", string e=" ") {
@@ -26,13 +27,20 @@ public:
         email.clear();
     }
 
+    //friend class Group;
 
     void setNumeStudent(string n) { nume = n; }
-    string getNumeStudent() { return nume; }
+//    string getNumeStudent() { return nume; }
     void setPrenumeStudent(string p) { prenume = p; }
-    string getPrenumeStudent() { return prenume; }
+//    string getPrenumeStudent() { return prenume; }
     void setEmailStudent(string e) { email = e; }
-    string getEmailStudent() { return email; }
+//    string getEmailStudent() { return email; }
+
+    friend ostream& operator<<(ostream& out, Student& student){
+        out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;
+        out << "Email: " << student.email << endl;
+        return out;
+    }
 
 };
 
@@ -42,6 +50,7 @@ private:
     string nume;
     string prenume;
     string email;
+    // list<Group> grupe;
 public:
 
     Teacher(string n=" ", string p=" ", string e=" ") {
@@ -56,13 +65,14 @@ public:
         email.clear();
     }
 
+    //friend class Group;
 
     void setNumeTeacher(string n) { nume = n; }
     string getNumeTeacher() { return nume; }
     void setPrenumeTeacher(string p) { prenume = p; }
     string getPrenumeTeacher() { return prenume; }
     void setEmailTeacher(string e) { email = e; }
-    string getEmailTeacher() { return email; }
+//    string getEmailTeacher() { return email; }
 
 };
 
@@ -73,7 +83,7 @@ private:
     string title;
     string numeProfesor;
     string prenumeProfesor;
-    array<string,100> studentiGrupa;
+    list<Student> studentiGrupa;
     int nrStudenti;
 public:
 
@@ -91,26 +101,38 @@ public:
         numeProfesor.clear();
         prenumeProfesor.clear();
         nrStudenti = 0;
+        studentiGrupa.clear();
     }
 
+    friend class Student;
+    friend class Teacher;
 
     void setCodUnicGrupa(int c) { codUnic = c; }
     int getCodUnicGrupa() { return codUnic; }
-    void setTitleGroup(string t) { title = t; }
-    string getTitleGroup() { return title; }
+//    void setTitleGroup(string t) { title = t; }
+//    string getTitleGroup() { return title; }
     void setNumeProfesorGroup(string np) { numeProfesor = np; }
-    string getNumeProfesorGroup() { return numeProfesor; }
+//    string getNumeProfesorGroup() { return numeProfesor; }
     void setPrenumeProfesorGroup(string pp) { prenumeProfesor = pp; }
-    string getPrenumeProfesorGroup() { return prenumeProfesor; }
+//    string getPrenumeProfesorGroup() { return prenumeProfesor; }
     void intratInGrupa(){ nrStudenti++; }
-    void iesitDinGrupa(){
-        if (nrStudenti>0){
-            nrStudenti--;
-        }
-    }
-//    void studentInscris(string n, string p){
-//        //trebuie sa vad cum inscriu un student ca nu stiu cum
+//    void iesitDinGrupa(){
+//        if (nrStudenti>0){
+//            nrStudenti--;
+//        }
 //    }
+    friend ostream& operator<<(ostream& out, Group& grupa){
+        out << "Clasa: " << grupa.title << endl;
+        out << "Profesorul: " << grupa.numeProfesor << " " << grupa.prenumeProfesor << endl;
+        out << "Codul: " << grupa.codUnic << endl;
+        out << "Nr elevi inscrisi: " << grupa.nrStudenti << endl;
+        return out;
+    }
+
+    void studentInscris(Student student){
+        studentiGrupa.push_back(student);
+    }
+    //aparent merge
 
 };
 
@@ -119,6 +141,27 @@ int main() {
 
     string tipCont, Nume, Prenume, Email, r, Titlu;
     int Cod;
+
+    Teacher teacher1;
+    teacher1.setNumeTeacher("Marin");
+    teacher1.setPrenumeTeacher("Maricica");
+    teacher1.setEmailTeacher("m.m@gmail.com");
+
+    Teacher teacher2;
+    teacher2.setNumeTeacher("Popescu");
+    teacher2.setPrenumeTeacher("Stefan");
+    teacher2.setEmailTeacher("p.s@gmail.com");
+
+    Teacher teacher3;
+    teacher3.setNumeTeacher("Ion");
+    teacher3.setPrenumeTeacher("Cornela");
+    teacher3.setEmailTeacher("i.c@gmail.com");
+
+    Group grupa1(2345, "POO", "Marin", "Maricica");
+    Group grupa2(3456, "Python", "Popescu", "Stefan");
+    Group grupa3(4567, "C++", "Ion", "Cornela");
+
+    list<Group> grupe = {grupa1, grupa2, grupa3};
 
     cout << "Student sau profesor? Scrie S pt student sau P pt profesor" << endl;
     cin >> tipCont;
@@ -137,18 +180,36 @@ int main() {
         cout << "Vrei sa intrii intr-o clasa? Y/N" << endl;
         cin >> r;
         if (r=="Y" || r=="y"){
-            //trb sa afisez optiunile pt clase din array nu stiu care
-            //si in functie de ce alegi trb sa introduci corect codul clasei
-            //si sa fiu adaugat la nr de studenti idn cls
-            //si ar trb sa am si un array in care sa arate in ce clase sunt
+            for (Group grupa : grupe){
+                cout << grupa;
+            }
+            //ar trb sa am si un array in care sa arate in ce clase sunt doar ca nu merge ca
+            //conteaza ordinea in care sunt definite clasele
+            cout << "In ce clasa vrei sa te inscrii? Scrie codul acesteia!" << endl;
+            cin >> Cod;
+            for (Group grupa : grupe){
+                if (grupa.getCodUnicGrupa() == Cod){
+                    grupa.studentInscris(student);
+                    grupa.intratInGrupa();
+                    cout << grupa << endl;
+                    cout << student << endl;
+                }
+            }
+            //mica-mare problema, cand ies din for se apeleaza destructorul si nu mi se retine ca fiind
+            //student inscris funny
+            for (Group grupa : grupe){
+                cout << grupa;
+            }
+
         } else {
             cout << "Vrei sa iesi dintr-o clasa? Y/N" << endl;
+            //aici ar trb defapt mai multe optiuni, sa iti afiseze optiuni
         }
     } else {
         if (tipCont=="P" || tipCont=="p"){
             cout << "Introdu numele: "<< endl;
             cin >> Nume;
-            cout << "Introdu prenumele: "<< endl;
+            cout << "Introdu prenumele: " << endl;
             cin >> Prenume;
             cout << "Introdu email-ul: "<< endl;
             cin >> Email;
