@@ -3,11 +3,6 @@
 #include <list>
 using namespace std;
 
-// APLICATIE STIL GOOGLE CLASSROOM
-// inca nu stiu ce fac exact aici ca s functionalitati
-// tastatura txt sa nu uit de ea
-//teste unitare
-
 
 class Student{
 private:
@@ -351,7 +346,6 @@ void exitGroup(Student student, list<Group> grupe) {
 void menu() {
     string tipCont, Nume, Prenume, Email, r, Titlu;
     string titluGrupa, npGrupa, ppGrupa;
-    int Cod;
 
     Teacher teacher1;
     dateTeacher(teacher1, "Marin", "Maricica", "m.m@gmail.com");
@@ -412,13 +406,23 @@ void menu() {
             }
         } else {
             cout << "Se pare ca nu ai introdus datele corect, te rog mai incearca o data!" << endl;
-            menu();
+            //menu(f);
         }
     }
 }
 
 int main() {
 
-    menu();
+    while(true) {
+        cout << endl;
+        cout << "1 intra, 0 iese: " << endl;
+        int x;
+        cin >> x;
+        if (x == 1){
+            menu();
+        } else {
+            break;
+        }
+    }
     return 0;
 }

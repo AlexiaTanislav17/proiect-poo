@@ -1,2 +1,17 @@
-5
-11 22 33 44 55
+1
+S
+Cormoranu
+Ionela
+ci@gmail.com
+y
+3456
+i
+4567
+i
+2345
+e
+4567
+e
+2345
+a
+0
