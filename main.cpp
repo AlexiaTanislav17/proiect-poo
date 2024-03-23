@@ -42,6 +42,13 @@ public:
         return out;
     }
 
+    bool operator==(const Student& student){
+        if (nume == student.nume && prenume == student.prenume && email == student.email){
+            return true;
+        }
+        return false;
+    }
+
 };
 
 
@@ -95,6 +102,23 @@ public:
         nrStudenti = 0;
     }
 
+    Group(int &c, string &t, string &np, string &pp, list<Student> &ss) {
+        codUnic = c;
+        title = t;
+        numeProfesor = np;
+        prenumeProfesor = pp;
+        nrStudenti = 0;
+        studentiGrupa = ss;
+    }
+
+    Group(const Group &g){
+        codUnic = g.codUnic;
+        title = g.title;
+        numeProfesor = g.numeProfesor;
+        prenumeProfesor = g.prenumeProfesor;
+        nrStudenti = g.nrStudenti;
+    }
+
     ~Group() {
         codUnic = 0;
         title.clear();
@@ -108,19 +132,28 @@ public:
     friend class Teacher;
 
     void setCodUnicGrupa(int c) { codUnic = c; }
-    int getCodUnicGrupa() { return codUnic; }
-//    void setTitleGroup(string t) { title = t; }
-//    string getTitleGroup() { return title; }
+    int getCodUnicGrupa() const{ return codUnic; }
+    void setTitleGroup(string t) { title = t; }
+    string getTitleGroup() { return title; }
     void setNumeProfesorGroup(string np) { numeProfesor = np; }
-//    string getNumeProfesorGroup() { return numeProfesor; }
+    string getNumeProfesorGroup() { return numeProfesor; }
     void setPrenumeProfesorGroup(string pp) { prenumeProfesor = pp; }
-//    string getPrenumeProfesorGroup() { return prenumeProfesor; }
+    string getPrenumeProfesorGroup() { return prenumeProfesor; }
     void intratInGrupa(){ nrStudenti++; }
 //    void iesitDinGrupa(){
 //        if (nrStudenti>0){
 //            nrStudenti--;
 //        }
 //    }
+
+    friend istream& operator>>(istream& in, Group& grupa){
+        cout << "Titlu: ";
+        in >>  grupa.title;
+        cout << "Cod: ";
+        in >> grupa.codUnic;
+        return in;
+    }
+
     friend ostream& operator<<(ostream& out, Group& grupa){
         out << "Clasa: " << grupa.title << endl;
         out << "Profesorul: " << grupa.numeProfesor << " " << grupa.prenumeProfesor << endl;
@@ -129,17 +162,45 @@ public:
         return out;
     }
 
-    void studentInscris(Student student){
-        studentiGrupa.push_back(student);
+    Group& operator=(const Group& grupa) {    //am pus const ca sa nu mai dea warning, sa asigur ca nu si schimba parametrul random
+        if (this == &grupa) {
+            return *this;
+        }
+        this->title = grupa.title;
+        this->numeProfesor = grupa.numeProfesor;
+        this->prenumeProfesor = grupa.prenumeProfesor;
+        this->codUnic = grupa.codUnic;
+        this->nrStudenti = grupa.nrStudenti;
+        this->studentiGrupa = grupa.studentiGrupa;
+        return *this;
     }
-    //aparent merge
 
+    void operator+=(Student& student){
+        this->studentiGrupa.push_back(student);
+    }
+
+    void operator-=(Student& student) {
+        this->studentiGrupa.remove(student);
+    }
 };
 
+void dateTeacher(Teacher t){
+    t.setNumeTeacher("Marin");
+    t.setPrenumeTeacher("Maricica");
+    t.setEmailTeacher("m.m@gmail.com");
+}
+
+bool operator==(const Group& g1, const Group& g2) {
+    if (g1.getCodUnicGrupa()== g2.getCodUnicGrupa()){
+        return true;
+    }
+    return false;
+}
 
 int main() {
 
     string tipCont, Nume, Prenume, Email, r, Titlu;
+    string titluGrupa, npGrupa, ppGrupa;
     int Cod;
 
     Teacher teacher1;
@@ -160,6 +221,7 @@ int main() {
     Group grupa1(2345, "POO", "Marin", "Maricica");
     Group grupa2(3456, "Python", "Popescu", "Stefan");
     Group grupa3(4567, "C++", "Ion", "Cornela");
+    Group grupaTemporara(0, " ", " ", " ");
 
     list<Group> grupe = {grupa1, grupa2, grupa3};
 
@@ -189,18 +251,23 @@ int main() {
             cin >> Cod;
             for (Group grupa : grupe){
                 if (grupa.getCodUnicGrupa() == Cod){
-                    grupa.studentInscris(student);
-                    grupa.intratInGrupa();
-                    cout << grupa << endl;
-                    cout << student << endl;
+                    titluGrupa = grupa.getTitleGroup();
+                    npGrupa = grupa.getNumeProfesorGroup();
+                    ppGrupa = grupa.getPrenumeProfesorGroup();
                 }
             }
-            //mica-mare problema, cand ies din for se apeleaza destructorul si nu mi se retine ca fiind
-            //student inscris funny
+            grupaTemporara.setNumeProfesorGroup(npGrupa);
+            grupaTemporara.setPrenumeProfesorGroup(ppGrupa);
+            grupaTemporara.setTitleGroup(titluGrupa);
+            grupaTemporara.setCodUnicGrupa(Cod);
+            grupe.remove(grupaTemporara);
+
+            grupaTemporara += student;
+            grupaTemporara.intratInGrupa();
+            grupe.push_back(grupaTemporara);
             for (Group grupa : grupe){
                 cout << grupa;
             }
-
         } else {
             cout << "Vrei sa iesi dintr-o clasa? Y/N" << endl;
             //aici ar trb defapt mai multe optiuni, sa iti afiseze optiuni
@@ -221,14 +288,16 @@ int main() {
             cout << "Vrei sa creezi o clasa? Y/N" << endl;
             cin >> r;
             if (r=="Y" || r=="y"){
-                Group grupa(0, "titlu", " ", " ");
+                Group grupa(0, " ", " ", " ");
                 grupa.setNumeProfesorGroup(teacher.getNumeTeacher());
                 grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
-                cout << "Introdu titlul clasei: "<< endl;
-                cin >> Titlu;
-                cout << "Introdu codul pt participanti: "<< endl;
-                cin >> Cod;
-                grupa.setCodUnicGrupa(Cod);
+                cin >> grupa;
+                cout << grupa;
+
+                //aici trb din nou sa intreb daca vrea sa mai creeze o clasa cred :')
+
+            } else {
+                cout << "Din pacate nu aveti ce sa faceti mai mult de atat, aplicatia e inca in progres. Va astept la urmatorul update!";
             }
         } else {
             cout << "Se pare ca nu ai introdus datele corect, te rog mai incearca o data!" << endl;
