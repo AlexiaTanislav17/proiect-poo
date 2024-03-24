@@ -202,25 +202,42 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
             ppGrupa = g.getPrenumeProfesorGroup();
         }
     }
-    Group gt(0, " "," ", " ");
-    gt.setNumeProfesorGroup(npGrupa);
-    gt.setPrenumeProfesorGroup(ppGrupa);
-    gt.setTitleGroup(titluGrupa);
-    gt.setCodUnicGrupa(c);
-    grupe.remove(gt);
-    for (Group& g : grupe){
-        cout << g;
-    }
-    string rp;
-    cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
-    cin >> rp;
-    if (rp == "C" || rp=="c") {
-        createGroup(teacher, grupe);
-    } else {
-        if (rp == "D" || rp == "d"){
-            deleteGroup(teacher, grupe);
+    if (npGrupa == teacher.getNumeTeacher() && ppGrupa == teacher.getPrenumeTeacher()){
+        Group gt(0, " "," ", " ");
+        gt.setNumeProfesorGroup(npGrupa);
+        gt.setPrenumeProfesorGroup(ppGrupa);
+        gt.setTitleGroup(titluGrupa);
+        gt.setCodUnicGrupa(c);
+        grupe.remove(gt);
+        for (Group& g : grupe){
+            cout << g;
+        }
+        string rp;
+        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+        cin >> rp;
+        if (rp == "C" || rp=="c") {
+            createGroup(teacher, grupe);
         } else {
-            cout << "Ai iesit!";
+            if (rp == "D" || rp == "d"){
+                deleteGroup(teacher, grupe);
+            } else {
+                cout << "Ai iesit!";
+            }
+        }
+    } else {
+        string rp;
+        cout << endl;
+        cout << "Nu ai autorizatie sa stergi aceasta clasa, nu esti profesor! Te rugam continua cu alta optiune." << endl;
+        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+        cin >> rp;
+        if (rp == "C" || rp=="c") {
+            createGroup(teacher, grupe);
+        } else {
+            if (rp == "D" || rp == "d"){
+                deleteGroup(teacher, grupe);
+            } else {
+                cout << "Ai iesit!";
+            }
         }
     }
 }
