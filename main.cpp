@@ -30,7 +30,7 @@ public:
     void setEmailStudent(string e) { email = std::move(e); }
 //    string getEmailStudent() { return email; }
 
-    friend ostream& operator<<(ostream& out, Student& student){
+    friend ostream& operator<<(ostream& out, const Student& student){
         out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;
         out << "Email: " << student.email << endl;
         return out;
@@ -86,22 +86,10 @@ public:
 
     Group(int c, string t, string np, string pp): codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), nrStudenti(0) {}
 
-    Group(int &c, string &t, string &np, string &pp, list<Student> &ss) {
-        codUnic = c;
-        title = t;
-        numeProfesor = np;
-        prenumeProfesor = pp;
-        nrStudenti = 0;
-        studentiGrupa = ss;
-    }
+    Group(const int &c, string t, string np, string pp, const list<Student> &ss):
+    codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), nrStudenti(0){}
 
-    Group(const Group &g){
-        codUnic = g.codUnic;
-        title = g.title;
-        numeProfesor = g.numeProfesor;
-        prenumeProfesor = g.prenumeProfesor;
-        nrStudenti = g.nrStudenti;
-    }
+    Group(const Group &g): codUnic(g.codUnic), title(g.title), numeProfesor(g.numeProfesor), prenumeProfesor(g.prenumeProfesor), nrStudenti(g.nrStudenti) {}
 
     ~Group() {
         codUnic = 0;
@@ -138,7 +126,7 @@ public:
         return in;
     }
 
-    friend ostream& operator<<(ostream& out, Group& grupa){
+    friend ostream& operator<<(ostream& out, const Group& grupa){
         out << "Clasa: " << grupa.title << endl;
         out << "Profesorul: " << grupa.numeProfesor << " " << grupa.prenumeProfesor << endl;
         out << "Codul: " << grupa.codUnic << endl;
@@ -163,7 +151,7 @@ public:
         this->studentiGrupa.push_back(student);
     }
 
-    void operator-=(Student& student) {
+    void operator-=(const Student& student) {
         this->studentiGrupa.remove(student);
     }
 };
@@ -237,9 +225,9 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
     }
 }
 
-void exitGroup(Student student, list<Group> grupe);
+void exitGroup(Student& student, list<Group> grupe);
 
-void enterGroup(Student student, list<Group> grupe) {
+void enterGroup(Student& student, list<Group> grupe) {
     int c;
     string rp, titluGrupa, npGrupa, ppGrupa;
     Group gt(0, " ", " ", "");
@@ -281,11 +269,11 @@ void enterGroup(Student student, list<Group> grupe) {
     }
 }
 
-void exitGroup(Student student, list<Group> grupe) {
+void exitGroup(Student& student, list<Group> grupe) {
     int c;
     string rp, titluGrupa, npGrupa, ppGrupa;
     Group gt(0, " ", " ", "");
-    for (Group grupa : grupe){
+    for (Group& grupa : grupe){
         cout << grupa;
     }
     cout << "Din ce clasa vrei sa iesi? Scrie codul acesteia!" << endl;
