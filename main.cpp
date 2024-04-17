@@ -331,7 +331,7 @@ void exitGroup(Student& student, list<Group> grupe) {
     }
 }
 
-void menu(list<Group> grupe) {
+void menu(list<Group> const grupe) {
     string tipCont, Nume, Prenume, Email, r;
 //
 //    Teacher teacher1("Marin", "Maricica", "m.m@gmail.com");
