@@ -1,9 +1,6 @@
-//
-// Created by Alexia on 16.04.2024.
-//
 
-//#ifndef OOP_TEACHER_H
-//#define OOP_TEACHER_H
+#ifndef OOP_TEACHER_H
+#define OOP_TEACHER_H
 
 #include <iostream>
 #include <string>
@@ -39,4 +36,4 @@ public:
 
 };
 
-//#endif //OOP_TEACHER_H
+#endif //OOP_TEACHER_H

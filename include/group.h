@@ -1,9 +1,6 @@
-//
-// Created by Alexia on 16.04.2024.
-//
 
-//#ifndef OOP_GROUP_H
-//#define OOP_GROUP_H
+#ifndef OOP_GROUP_H
+#define OOP_GROUP_H
 
 #include <iostream>
 #include <string>
@@ -95,4 +92,4 @@ public:
     }
 };
 
-//#endif //OOP_GROUP_H
+#endif //OOP_GROUP_H

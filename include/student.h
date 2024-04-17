@@ -1,9 +1,5 @@
-//
-// Created by Alexia on 16.04.2024.
-//
-//
-//#ifndef OOP_STUDENT_H
-//#define OOP_STUDENT_H
+#ifndef OOP_STUDENT_H
+#define OOP_STUDENT_H
 
 #include <iostream>
 #include <string>
@@ -52,4 +48,4 @@ public:
 
 };
 
-//#endif //OOP_STUDENT_H
+#endif //OOP_STUDENT_H

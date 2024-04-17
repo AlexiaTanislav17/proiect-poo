@@ -99,7 +99,6 @@ FetchContent_MakeAvailable(googletest)
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES}
-        include/student.cpp
         include/student.h)
 
 ###############################################################################
@@ -157,9 +156,7 @@ add_executable(
         ${HEADERS}
         ${TESTS}
         ${SOURCES}
-        include/teacher.cpp
         include/teacher.h
-        include/group.cpp
         include/group.h
 )
 
