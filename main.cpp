@@ -2,158 +2,162 @@
 #include <string>
 #include <list>
 #include <utility>
+#include "student.h"
+#include "teacher.h"
+#include "group.h"
+
 using namespace std;
 
-class Student{
-private:
-    string nume;
-    string prenume;
-    string email;
-    //list<Group> grupe;
-public:
+//class Student{
+//private:
+//    string nume;
+//    string prenume;
+//    string email;
+//    //list<Group> grupe;
+//public:
+//
+//    explicit Student(string n=" ", string p=" ", string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
+//
+//    ~Student() {
+//        nume.clear();
+//        prenume.clear();
+//        email.clear();
+//    }
+//
+//    //friend class Group;
+//
+//    void setNumeStudent(string n) { nume = std::move(n); }
+////    string getNumeStudent() { return nume; }
+//    void setPrenumeStudent(string p) { prenume = std::move(p); }
+////    string getPrenumeStudent() { return prenume; }
+//    void setEmailStudent(string e) { email = std::move(e); }
+////    string getEmailStudent() { return email; }
+//
+//    friend ostream& operator<<(ostream& out, const Student& student){
+//        out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;
+//        out << "Email: " << student.email << endl;
+//        return out;
+//    }
+//
+//    bool operator==(const Student& student) const{
+//        if (nume == student.nume && prenume == student.prenume && email == student.email){
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//};
 
-    explicit Student(string n=" ", string p=" ", string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
+//
+//class Teacher{
+//private:
+//    string nume;
+//    string prenume;
+//    string email;
+//    // list<Group> grupe;
+//public:
+//
+//    explicit Teacher(std::string  n=" ", std::string p=" ", std::string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
+//
+//    ~Teacher() {
+//        nume.clear();
+//        prenume.clear();
+//        email.clear();
+//    }
+//
+//    //friend class Group;
+//
+//    void setNumeTeacher(string n) { nume = std::move(n); }
+//    string getNumeTeacher() { return nume; }
+//    void setPrenumeTeacher(string p) { prenume = std::move(p); }
+//    string getPrenumeTeacher() { return prenume; }
+//    void setEmailTeacher(string e) { email = std::move(e); }
+////    string getEmailTeacher() { return email; }
+//
+//};
 
-    ~Student() {
-        nume.clear();
-        prenume.clear();
-        email.clear();
-    }
-
-    //friend class Group;
-
-    void setNumeStudent(string n) { nume = std::move(n); }
-//    string getNumeStudent() { return nume; }
-    void setPrenumeStudent(string p) { prenume = std::move(p); }
-//    string getPrenumeStudent() { return prenume; }
-    void setEmailStudent(string e) { email = std::move(e); }
-//    string getEmailStudent() { return email; }
-
-    friend ostream& operator<<(ostream& out, const Student& student){
-        out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;
-        out << "Email: " << student.email << endl;
-        return out;
-    }
-
-    bool operator==(const Student& student) const{
-        if (nume == student.nume && prenume == student.prenume && email == student.email){
-            return true;
-        }
-        return false;
-    }
-
-};
-
-
-class Teacher{
-private:
-    string nume;
-    string prenume;
-    string email;
-    // list<Group> grupe;
-public:
-
-    explicit Teacher(std::string  n=" ", std::string p=" ", std::string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
-
-    ~Teacher() {
-        nume.clear();
-        prenume.clear();
-        email.clear();
-    }
-
-    //friend class Group;
-
-    void setNumeTeacher(string n) { nume = std::move(n); }
-    string getNumeTeacher() { return nume; }
-    void setPrenumeTeacher(string p) { prenume = std::move(p); }
-    string getPrenumeTeacher() { return prenume; }
-    void setEmailTeacher(string e) { email = std::move(e); }
-//    string getEmailTeacher() { return email; }
-
-};
-
-
-class Group{
-private:
-    int codUnic;
-    string title;
-    string numeProfesor;
-    string prenumeProfesor;
-    list<Student> studentiGrupa;
-    int nrStudenti;
-public:
-
-    Group(int c, string t, string np, string pp): codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), nrStudenti(0) {}
-
-    Group(const int &c, string t, string np, string pp, const list<Student> &ss):
-    codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), nrStudenti(0){}
-
-    Group(const Group &g): codUnic(g.codUnic), title(g.title), numeProfesor(g.numeProfesor), prenumeProfesor(g.prenumeProfesor), nrStudenti(g.nrStudenti) {}
-
-    ~Group() {
-        codUnic = 0;
-        title.clear();
-        numeProfesor.clear();
-        prenumeProfesor.clear();
-        nrStudenti = 0;
-        studentiGrupa.clear();
-    }
-
-    friend class Student;
-    friend class Teacher;
-
-    void setCodUnicGrupa(int c) { codUnic = c; }
-    int getCodUnicGrupa() const{ return codUnic; }
-    void setTitleGroup(string t) { title = std::move(t); }
-    string getTitleGroup() { return title; }
-    void setNumeProfesorGroup(string np) { numeProfesor = std::move(np); }
-    string getNumeProfesorGroup() { return numeProfesor; }
-    void setPrenumeProfesorGroup(string pp) { prenumeProfesor = std::move(pp); }
-    string getPrenumeProfesorGroup() { return prenumeProfesor; }
-    void intratInGrupa(){ nrStudenti++; }
-    void iesitDinGrupa(){
-        if (nrStudenti>0){
-            nrStudenti--;
-        }
-    }
-
-    friend istream& operator>>(istream& in, Group& grupa){
-        cout << "Titlu: ";
-        in >>  grupa.title;
-        cout << "Cod: ";
-        in >> grupa.codUnic;
-        return in;
-    }
-
-    friend ostream& operator<<(ostream& out, const Group& grupa){
-        out << "Clasa: " << grupa.title << endl;
-        out << "Profesorul: " << grupa.numeProfesor << " " << grupa.prenumeProfesor << endl;
-        out << "Codul: " << grupa.codUnic << endl;
-        out << "Nr elevi inscrisi: " << grupa.nrStudenti << endl;
-        return out;
-    }
-
-    Group& operator=(const Group& grupa) {    //am pus const ca sa nu mai dea warning, sa asigur ca nu si schimba parametrul random
-        if (this == &grupa) {
-            return *this;
-        }
-        this->title = grupa.title;
-        this->numeProfesor = grupa.numeProfesor;
-        this->prenumeProfesor = grupa.prenumeProfesor;
-        this->codUnic = grupa.codUnic;
-        this->nrStudenti = grupa.nrStudenti;
-        this->studentiGrupa = grupa.studentiGrupa;
-        return *this;
-    }
-
-    void operator+=(Student& student){
-        this->studentiGrupa.push_back(student);
-    }
-
-    void operator-=(const Student& student) {
-        this->studentiGrupa.remove(student);
-    }
-};
+//
+//class Group{
+//private:
+//    int codUnic;
+//    string title;
+//    string numeProfesor;
+//    string prenumeProfesor;
+//    list<Student> studentiGrupa;
+//    int nrStudenti;
+//public:
+//
+//    Group(int c, string t, string np, string pp): codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), nrStudenti(0) {}
+//
+//    Group(const int &c, string t, string np, string pp, const list<Student> &ss):
+//    codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), nrStudenti(0){}
+//
+//    Group(const Group &g): codUnic(g.codUnic), title(g.title), numeProfesor(g.numeProfesor), prenumeProfesor(g.prenumeProfesor), nrStudenti(g.nrStudenti) {}
+//
+//    ~Group() {
+//        codUnic = 0;
+//        title.clear();
+//        numeProfesor.clear();
+//        prenumeProfesor.clear();
+//        nrStudenti = 0;
+//        studentiGrupa.clear();
+//    }
+//
+//    friend class Student;
+//    friend class Teacher;
+//
+//    void setCodUnicGrupa(int c) { codUnic = c; }
+//    int getCodUnicGrupa() const{ return codUnic; }
+//    void setTitleGroup(string t) { title = std::move(t); }
+//    string getTitleGroup() { return title; }
+//    void setNumeProfesorGroup(string np) { numeProfesor = std::move(np); }
+//    string getNumeProfesorGroup() { return numeProfesor; }
+//    void setPrenumeProfesorGroup(string pp) { prenumeProfesor = std::move(pp); }
+//    string getPrenumeProfesorGroup() { return prenumeProfesor; }
+//    void intratInGrupa(){ nrStudenti++; }
+//    void iesitDinGrupa(){
+//        if (nrStudenti>0){
+//            nrStudenti--;
+//        }
+//    }
+//
+//    friend istream& operator>>(istream& in, Group& grupa){
+//        cout << "Titlu: ";
+//        in >>  grupa.title;
+//        cout << "Cod: ";
+//        in >> grupa.codUnic;
+//        return in;
+//    }
+//
+//    friend ostream& operator<<(ostream& out, const Group& grupa){
+//        out << "Clasa: " << grupa.title << endl;
+//        out << "Profesorul: " << grupa.numeProfesor << " " << grupa.prenumeProfesor << endl;
+//        out << "Codul: " << grupa.codUnic << endl;
+//        out << "Nr elevi inscrisi: " << grupa.nrStudenti << endl;
+//        return out;
+//    }
+//
+//    Group& operator=(const Group& grupa) {    //am pus const ca sa nu mai dea warning, sa asigur ca nu si schimba parametrul random
+//        if (this == &grupa) {
+//            return *this;
+//        }
+//        this->title = grupa.title;
+//        this->numeProfesor = grupa.numeProfesor;
+//        this->prenumeProfesor = grupa.prenumeProfesor;
+//        this->codUnic = grupa.codUnic;
+//        this->nrStudenti = grupa.nrStudenti;
+//        this->studentiGrupa = grupa.studentiGrupa;
+//        return *this;
+//    }
+//
+//    void operator+=(Student& student){
+//        this->studentiGrupa.push_back(student);
+//    }
+//
+//    void operator-=(const Student& student) {
+//        this->studentiGrupa.remove(student);
+//    }
+//};
 
 
 bool operator==(const Group& g1, const Group& g2) {
@@ -328,19 +332,19 @@ void exitGroup(Student& student, list<Group> grupe) {
     }
 }
 
-void menu() {
+void menu(list<Group> grupe) {
     string tipCont, Nume, Prenume, Email, r;
-
-    Teacher teacher1("Marin", "Maricica", "m.m@gmail.com");
-    Teacher teacher2("Popescu", "Stefan", "p.s@gmail.com");
-    Teacher teacher3("Ion", "Cornela", "i.c@gmail.com");
-
-    Group grupa1(2345, "POO", "Marin", "Maricica");
-    Group grupa2(3456, "Python", "Popescu", "Stefan");
-    Group grupa3(4567, "C++", "Ion", "Cornela");
-    Group grupaTemporara(0, " ", " ", " ");
-
-    list<Group> grupe = {grupa1, grupa2, grupa3};
+//
+//    Teacher teacher1("Marin", "Maricica", "m.m@gmail.com");
+//    Teacher teacher2("Popescu", "Stefan", "p.s@gmail.com");
+//    Teacher teacher3("Ion", "Cornela", "i.c@gmail.com");
+//
+//    Group grupa1(2345, "POO", "Marin", "Maricica");
+//    Group grupa2(3456, "Python", "Popescu", "Stefan");
+//    Group grupa3(4567, "C++", "Ion", "Cornela");
+//    Group grupaTemporara(0, " ", " ", " ");
+//
+//    list<Group> grupe = {grupa1, grupa2, grupa3};
 
     cout << "Student sau profesor? Scrie S pt student sau P pt profesor" << endl;
     cin >> tipCont;
@@ -385,12 +389,25 @@ void menu() {
             }
         } else {
             cout << "Se pare ca nu ai introdus datele corect, te rog mai incearca o data!" << endl;
-            menu();
+            menu(grupe);
         }
     }
 }
 
 int main() {
+
+//    string tipCont, Nume, Prenume, Email, r;
+
+    Teacher teacher1("Marin", "Maricica", "m.m@gmail.com");
+    Teacher teacher2("Popescu", "Stefan", "p.s@gmail.com");
+    Teacher teacher3("Ion", "Cornela", "i.c@gmail.com");
+
+    Group grupa1(2345, "POO", "Marin", "Maricica");
+    Group grupa2(3456, "Python", "Popescu", "Stefan");
+    Group grupa3(4567, "C++", "Ion", "Cornela");
+    Group grupaTemporara(0, " ", " ", " ");
+
+    list<Group> grupe = {grupa1, grupa2, grupa3};
 
     while(true) {
         cout << endl;
@@ -398,7 +415,7 @@ int main() {
         int x;
         cin >> x;
         if (x == 1){
-            menu();
+            menu(grupe);
         } else {
             break;
         }
