@@ -158,7 +158,7 @@ using namespace std;
 //        this->studentiGrupa.remove(student);
 //    }
 //};
-//
+
 
 bool operator==(const Group& g1, const Group& g2) {
     if (g1.getCodUnicGrupa()== g2.getCodUnicGrupa()){
