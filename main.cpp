@@ -4,6 +4,7 @@
 #include "student.h"
 #include "teacher.h"
 #include "group.h"
+//#include "post.h"
 
 using namespace std;
 
