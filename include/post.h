@@ -37,7 +37,6 @@ public:
 //    void setPrenumeUser(string pu) { prenumeUser = std::move(pu); }
 //    string getPrenumeUser() { return prenumeUser; }
 
-
     //virtual void function() = 0;
 };
 
