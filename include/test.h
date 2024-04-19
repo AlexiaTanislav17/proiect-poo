@@ -32,7 +32,7 @@ public:
 
     friend class Teacher;
 
-    void citire(Teacher& t) {
+    void citire(Teacher& t) override {
         setNumeUser(t.getNumeTeacher());
         setPrenumeUser(t.getPrenumeTeacher());
         cout << "Titlul postarii: " << titlu << endl;
@@ -42,7 +42,7 @@ public:
         cout << "Care e maximul de puncte pe care il pot primi studentii pe acesta tema?" << grade << endl;
     }
 
-    void afisare() {
+    void afisare() override {
         cout << numeUser << " ";
         cout << prenumeUser << endl;
         cout << titlu << endl;

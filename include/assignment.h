@@ -33,7 +33,7 @@ public:
 
     friend class Teacher;
 
-    void citire(Teacher& t) {
+    void citire(Teacher& t) override {
         setNumeUser(t.getNumeTeacher());
         setPrenumeUser(t.getPrenumeTeacher());
         cout << "Titlul postarii: " << titlu << endl;
