@@ -6,6 +6,7 @@
 #include <string>
 #include <list>
 #include <utility>
+#include "teacher.h"
 
 using namespace std;
 
@@ -32,12 +33,14 @@ public:
 //    string getTitlu() { return titlu; }
 //    void setDescriere(string d) { descriere = std::move(d); }
 //    string getDescriere() { return descriere; }
-//    void setNumeUser(string nu) { numeUser = std::move(nu); }
+    virtual void setNumeUser(string nu) { numeUser = std::move(nu); }
 //    string getNumeuser() { return numeUser; }
-//    void setPrenumeUser(string pu) { prenumeUser = std::move(pu); }
+    virtual void setPrenumeUser(string pu) { prenumeUser = std::move(pu); }
 //    string getPrenumeUser() { return prenumeUser; }
 
-    //virtual void function() = 0;
+    virtual void citire() =0;
+    virtual void afisare() = 0;
+
 };
 
 
@@ -62,7 +65,27 @@ public:
         grade = 0;
     }
 
-    //void function() { //dosmth  }
+    friend class Teacher;
+
+    void citire(Teacher& t) {
+        setNumeUser(t.getNumeTeacher());
+        setPrenumeUser(t.getPrenumeTeacher());
+        cout << "Titlul postarii: " << titlu << endl;
+        cout << "Descriere postare: " << descriere << endl;
+        cout << "Ataseaza te rog fisierul (scrie numele lui):" << file << endl;
+        cout << "Pana cand pot studenti sa trimita temele?" << dueDate << endl;   //cred ca ar trb sa fac cumva un vector de teme postate in cls asta
+        cout << "Care e maximul de puncte pe care il pot primi studentii pe acesta tema?" << grade << endl;
+    }
+
+    void afisare() {
+        cout << numeUser << " ";
+        cout << prenumeUser << endl;
+        cout << titlu << endl;
+        cout << descriere << endl;
+        cout << file << endl;
+        cout << dueDate << endl;
+        cout << grade << endl;
+    }
 
     Assignment& operator=(const Assignment& a) {
         if (this == &a) {
