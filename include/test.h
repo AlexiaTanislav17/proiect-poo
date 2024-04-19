@@ -1,6 +1,6 @@
 
-#ifndef OOP_ASSIGNMENT_H
-#define OOP_ASSIGNMENT_H
+#ifndef OOP_TEST_H
+#define OOP_TEST_H
 
 #include <iostream>
 #include <string>
@@ -9,25 +9,24 @@
 #include "post.h"
 #include "teacher.h"
 
-
-class Assignment: public Post {
+class Test: public Post {
 private:
     string file;
-    string dueDate;
+    string dueTime;
     int grade;
 
 public:
-    Assignment(const string& t, const string& d, const string& nu,  const string& pu, string f, string dd): Post(t, d, nu, pu) , file(std::move(f)), dueDate(std::move(dd)), grade(0){}
+    Test(const string& t, const string& d, const string& nu,  const string& pu, string f, string dt): Post(t, d, nu, pu) , file(std::move(f)), dueTime(std::move(dt)), grade(0){}
 
-    Assignment(const Assignment &a): Post(a), file(a.file), dueDate(a.dueDate), grade(a.grade) {}
+    Test(const Test &t): Post(t), file(t.file), dueTime(t.dueTime), grade(t.grade) {}
 
-    ~Assignment() {
+    ~Test() {
         titlu.clear();
         descriere.clear();
         numeUser.clear();
         prenumeUser.clear();
         file.clear();
-        dueDate.clear();
+        dueTime.clear();
         grade = 0;
     }
 
@@ -39,7 +38,7 @@ public:
         cout << "Titlul postarii: " << titlu << endl;
         cout << "Descriere postare: " << descriere << endl;
         cout << "Ataseaza te rog fisierul (scrie numele lui):" << file << endl;
-        cout << "Pana cand pot studenti sa trimita temele?" << dueDate << endl;   //cred ca ar trb sa fac cumva un vector de teme postate in cls asta
+        cout << "Pana la ce ora pot studenti sa trimita rezolvarile testelor?" << dueTime << endl;   //cred ca ar trb sa fac cumva un vector de teme postate in cls asta
         cout << "Care e maximul de puncte pe care il pot primi studentii pe acesta tema?" << grade << endl;
     }
 
@@ -49,11 +48,11 @@ public:
         cout << titlu << endl;
         cout << descriere << endl;
         cout << file << endl;
-        cout << dueDate << endl;
+        cout << dueTime << endl;
         cout << grade << endl;
     }
 
-    Assignment& operator=(const Assignment& a) {
+    Test& operator=(const Test& a) {
         if (this == &a) {
             return *this;
         }
@@ -62,11 +61,11 @@ public:
         this->prenumeUser = a.prenumeUser;
         this->file = a.file;
         this->descriere = a.descriere;
-        this->dueDate = a.dueDate;
+        this->dueTime = a.dueTime;
         this->grade = a.grade;
         return *this;
     }
 
 };
 
-#endif //OOP_ASSIGNMENT_H
+#endif //OOP_TEST_H
