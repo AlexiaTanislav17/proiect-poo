@@ -22,7 +22,7 @@ public:
 
     Post(string t, string d, string nu, string pu): titlu(std::move(t)), descriere(std::move(d)), numeUser(std::move(nu)), prenumeUser(std::move(pu)) {}
 
-    //constr cop si op =
+    Post(const Post &p): titlu(p.titlu), descriere(p.descriere), numeUser(p.numeUser), prenumeUser(p.prenumeUser)  {}
 
     virtual ~Post() {
         titlu.clear();
@@ -42,6 +42,18 @@ public:
 
     virtual void citire(Teacher& t) =0;
     virtual void afisare() = 0;
+    //cred ca ar trb sa fac si alte functii virtuale
+
+    Post& operator=(const Post& p) {
+        if (this == &p) {
+            return *this;
+        }
+        this->titlu = p.titlu;
+        this->numeUser = p.numeUser;
+        this->prenumeUser = p.prenumeUser;
+        this->descriere = p.descriere;
+        return *this;
+    }
 
 };
 
