@@ -22,7 +22,9 @@ public:
 
     Post(string t, string d, string nu, string pu): titlu(std::move(t)), descriere(std::move(d)), numeUser(std::move(nu)), prenumeUser(std::move(pu)) {}
 
-    ~Post() {
+    //constr cop si op =
+
+    virtual ~Post() {
         titlu.clear();
         descriere.clear();
         numeUser.clear();

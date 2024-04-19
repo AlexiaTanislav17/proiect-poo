@@ -6,6 +6,9 @@
 #include <string>
 #include <list>
 #include <utility>
+#include "post.h"
+#include "assignment.h"
+#include "test.h"
 
 using namespace std;
 
@@ -17,13 +20,14 @@ private:
     string numeProfesor;
     string prenumeProfesor;
     list<Student> studentiGrupa;
+    list<Post*> posts;
     int nrStudenti;
 public:
 
     Group(int c, string t, string np, string pp): codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), nrStudenti(0) {}
 
-    Group(const int &c, string t, string np, string pp, const list<Student> &ss):
-            codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), nrStudenti(0){}
+    Group(const int &c, string t, string np, string pp, const list<Student> &ss, const list<Post*> &p):
+            codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), posts(p), nrStudenti(0){}
 
     Group(const Group &g): codUnic(g.codUnic), title(g.title), numeProfesor(g.numeProfesor), prenumeProfesor(g.prenumeProfesor), nrStudenti(g.nrStudenti) {}
 
@@ -34,10 +38,14 @@ public:
         prenumeProfesor.clear();
         nrStudenti = 0;
         studentiGrupa.clear();
+        posts.clear();
     }
 
     friend class Student;
     friend class Teacher;
+    friend class Post;
+    friend class Assignment;
+    friend class Test;
 
     void setCodUnicGrupa(int c) { codUnic = c; }
     int getCodUnicGrupa() const{ return codUnic; }
@@ -54,6 +62,17 @@ public:
         }
     }
 
+    void adaugarePostare(Post* post) {
+        //ar trb si efectiv sa adaug/introduc datele postarii cred
+        //gen de creare postare
+        posts.push_back(post);
+    }
+
+    void stergerePostare(Post* post) {
+        //trb sa fac cv cod cred sa pot sa identific postarea pe care sa o sterg
+        posts.remove(post);
+    }
+
     friend istream& operator>>(istream& in, Group& grupa){
         cout << "Titlu: ";
         in >>  grupa.title;
@@ -67,6 +86,9 @@ public:
         out << "Profesorul: " << grupa.numeProfesor << " " << grupa.prenumeProfesor << endl;
         out << "Codul: " << grupa.codUnic << endl;
         out << "Nr elevi inscrisi: " << grupa.nrStudenti << endl;
+        for (Post* p: grupa.posts) {
+            p->afisare();
+        }
         return out;
     }
 
@@ -80,6 +102,7 @@ public:
         this->codUnic = grupa.codUnic;
         this->nrStudenti = grupa.nrStudenti;
         this->studentiGrupa = grupa.studentiGrupa;
+        this->posts = grupa.posts;
         return *this;
     }
 
