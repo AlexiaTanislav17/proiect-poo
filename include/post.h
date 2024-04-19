@@ -40,7 +40,7 @@ public:
     virtual void setPrenumeUser(string pu) { prenumeUser = std::move(pu); }
 //    string getPrenumeUser() { return prenumeUser; }
 
-    virtual void citire() =0;
+    virtual void citire(Teacher& t) =0;
     virtual void afisare() = 0;
 
 };

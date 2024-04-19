@@ -43,7 +43,7 @@ public:
         cout << "Care e maximul de puncte pe care il pot primi studentii pe acesta tema?" << grade << endl;
     }
 
-    void afisare() {
+    void afisare() override {
         cout << numeUser << " ";
         cout << prenumeUser << endl;
         cout << titlu << endl;
