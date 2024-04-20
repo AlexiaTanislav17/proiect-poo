@@ -99,7 +99,7 @@ public:
         this->numeProfesor = grupa.numeProfesor;
         this->prenumeProfesor = grupa.prenumeProfesor;
         this->codUnic = grupa.codUnic;
-        //Group::nrStudenti = Group::nrStudenti;
+        this->nrStudenti = grupa.nrStudenti;
         this->studentiGrupa = grupa.studentiGrupa;
         this->posts = grupa.posts;
         return *this;
