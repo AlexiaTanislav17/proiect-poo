@@ -56,7 +56,7 @@ public:
     string getNumeProfesorGroup() { return numeProfesor; }
     void setPrenumeProfesorGroup(string pp) { prenumeProfesor = std::move(pp); }
     string getPrenumeProfesorGroup() { return prenumeProfesor; }
-    //list<Post *> getPosts() { return posts; }
+    list<Post *> getPosts() { return posts; }
     void intratInGrupa(){ nrStudenti++; }
     void iesitDinGrupa(){
         if (nrStudenti>0){
@@ -65,8 +65,6 @@ public:
     }
 
     void adaugarePostare(Post* post) {
-        //ar trb si efectiv sa adaug/introduc datele postarii cred
-        //gen de creare postare
         posts.push_back(post);
     }
 
@@ -94,7 +92,7 @@ public:
         return out;
     }
 
-    Group& operator=(const Group& grupa) {    //am pus const ca sa nu mai dea warning, sa asigur ca nu si schimba parametrul random
+    Group& operator=(const Group& grupa) {
         if (this == &grupa) {
             return *this;
         }

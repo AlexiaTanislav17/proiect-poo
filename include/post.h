@@ -32,7 +32,7 @@ public:
     }
 
 //    void setTitlu(string t) { titlu = std::move(t); }
-//    string getTitlu() { return titlu; }
+    string getTitlu() { return titlu; }
 //    void setDescriere(string d) { descriere = std::move(d); }
 //    string getDescriere() { return descriere; }
     virtual void setNumeUser(string nu) { numeUser = std::move(nu); }
