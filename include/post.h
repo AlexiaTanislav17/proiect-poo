@@ -20,9 +20,9 @@ protected:
 
 public:
 
-    Post(string t, string d, string nu, string pu): titlu(std::move(t)), descriere(std::move(d)), numeUser(std::move(nu)), prenumeUser(std::move(pu)) {}
+    Post(string t = "", string d = "", string nu = "", string pu = ""): titlu(std::move(t)), descriere(std::move(d)), numeUser(std::move(nu)), prenumeUser(std::move(pu)) {}
 
-    Post(const Post &p): titlu(p.titlu), descriere(p.descriere), numeUser(p.numeUser), prenumeUser(p.prenumeUser)  {}
+    Post(const Post &p): titlu(p.titlu), descriere(p.descriere), numeUser(p.numeUser), prenumeUser(p.prenumeUser) {}
 
     virtual ~Post() {
         titlu.clear();

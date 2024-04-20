@@ -16,7 +16,7 @@ private:
     int grade;
 
 public:
-    Test(const string& t, const string& d, const string& nu,  const string& pu, string f, string dt): Post(t, d, nu, pu) , file(std::move(f)), dueTime(std::move(dt)), grade(0){}
+    Test(const string& t = "", const string& d = "", const string& nu = "",  const string& pu = "", string f = "", string dt = ""): Post(t, d, nu, pu) , file(std::move(f)), dueTime(std::move(dt)), grade(0){}
 
     Test(const Test &t): Post(t), file(t.file), dueTime(t.dueTime), grade(t.grade) {}
 
@@ -35,11 +35,21 @@ public:
     void citire(Teacher& t) override {
         setNumeUser(t.getNumeTeacher());
         setPrenumeUser(t.getPrenumeTeacher());
-        cout << "Titlul postarii: " << titlu << endl;
-        cout << "Descriere postare: " << descriere << endl;
-        cout << "Ataseaza te rog fisierul (scrie numele lui):" << file << endl;
-        cout << "Pana la ce ora pot studenti sa trimita rezolvarile testelor?" << dueTime << endl;   //cred ca ar trb sa fac cumva un vector de teme postate in cls asta
-        cout << "Care e maximul de puncte pe care il pot primi studentii pe acesta tema?" << grade << endl;
+        cout << "Titlul postarii: ";
+        cin >> titlu;
+        cout << endl;
+        cout << "Descriere postare: ";
+        cin >> descriere;
+        cout << endl;
+        cout << "Ataseaza te rog fisierul (scrie numele lui):";
+        cin >> file;
+        cout << endl;
+        cout << "Pana la ce ora pot studenti sa trimita rezolvarile testelor?";   //cred ca ar trb sa fac cumva un vector de teme postate in cls asta
+        cin >> dueTime;
+        cout << endl;
+        cout << "Care e maximul de puncte pe care il pot primi studentii pe acesta tema?";
+        cin >> grade;
+        cout << endl;
     }
 
     void afisare() override {
