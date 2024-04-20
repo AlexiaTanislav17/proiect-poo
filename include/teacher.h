@@ -15,14 +15,16 @@ private:
     string prenume;
     string email;
     // list<Group> grupe;
+    static int totalGroups;
 public:
 
-    explicit Teacher(std::string  n=" ", std::string p=" ", std::string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
+    explicit Teacher(std::string  n=" ", std::string p=" ", std::string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) { totalGroups = 0; }
 
     ~Teacher() {
         nume.clear();
         prenume.clear();
         email.clear();
+        totalGroups = 0;
     }
 
     //friend class Group;
@@ -33,6 +35,17 @@ public:
     string getPrenumeTeacher() { return prenume; }
     void setEmailTeacher(string e) { email = std::move(e); }
 //    string getEmailTeacher() { return email; }
+    static int getTotalGroups() { return totalGroups; }
+    static void incrementTotalGroups() { totalGroups++; }
+    static void decrementTotalGroups() {
+        if (totalGroups > 0) {
+            totalGroups--;
+        }
+    }
+    void afTotalGroups()
+    {
+        cout << "Nr total de grupe create de tine: " << Teacher::totalGroups << endl;
+    }
 
 };
 

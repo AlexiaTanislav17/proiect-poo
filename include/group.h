@@ -28,7 +28,7 @@ public:
     Group(int c, string t, string np, string pp): codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), nrStudenti(0) {}
 
     Group(const int &c, string t, string np, string pp, const list<Student> &ss, const list<Post*> &p):
-            codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), posts(p), nrStudenti(0){}
+            codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), posts(p), nrStudenti(0) {}
 
     Group(const Group &g): codUnic(g.codUnic), title(g.title), numeProfesor(g.numeProfesor), prenumeProfesor(g.prenumeProfesor), nrStudenti(g.nrStudenti) {}
 
@@ -69,7 +69,6 @@ public:
     }
 
     void stergerePostare(Post* post) {
-        //trb sa fac cv cod cred sa pot sa identific postarea pe care sa o sterg
         posts.remove(post);
     }
 
@@ -100,7 +99,7 @@ public:
         this->numeProfesor = grupa.numeProfesor;
         this->prenumeProfesor = grupa.prenumeProfesor;
         this->codUnic = grupa.codUnic;
-        this->nrStudenti = grupa.nrStudenti;
+        //Group::nrStudenti = Group::nrStudenti;
         this->studentiGrupa = grupa.studentiGrupa;
         this->posts = grupa.posts;
         return *this;

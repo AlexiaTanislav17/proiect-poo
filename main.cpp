@@ -9,6 +9,7 @@
 
 using namespace std;
 
+int Teacher::totalGroups = 0;
 
 bool operator==(const Group& g1, const Group& g2) {
     if (g1.getCodUnicGrupa()== g2.getCodUnicGrupa()){
@@ -31,8 +32,10 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
     grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
     cin >> grupa;
     grupe.push_back(grupa);
+    Teacher::incrementTotalGroups();
+    teacher.afTotalGroups();
     for (Group& g : grupe){
-        cout << g;
+        cout << g << "\n";
     }
     cout << endl;
     string rp;
@@ -83,6 +86,8 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
         gt.setTitleGroup(titluGrupa);
         gt.setCodUnicGrupa(c);
         grupe.remove(gt);
+        Teacher::decrementTotalGroups();
+        teacher.afTotalGroups();
         for (Group& g : grupe){
             cout << g;
         }
