@@ -5,6 +5,7 @@
 #include "teacher.h"
 #include "group.h"
 #include "post.h"
+#include "assignment.h"
 
 using namespace std;
 
@@ -255,58 +256,80 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
 
 void createAssignment(Teacher& teacher, const list<Group>& grupe) {
     int c;
-    string titluGrupa, npGrupa,  ppGrupa;
+    int k = 0;
+    //string titluGrupa, npGrupa,  ppGrupa;
     Assignment a;
     Post *p = &a;
     p->citire(teacher);
     cout << "Introdu codul clasei careia vrei sa ii adaugi postarea: " << endl;
     cin >> c;
     for (Group g : grupe){
-        if (c == g.getCodUnicGrupa()){
-            titluGrupa = g.getTitleGroup();
-            npGrupa = g.getNumeProfesorGroup();
-            ppGrupa = g.getPrenumeProfesorGroup();
+        if (c == g.getCodUnicGrupa() && teacher.getNumeTeacher() == g.getNumeProfesorGroup() && g.getPrenumeProfesorGroup() == teacher.getPrenumeTeacher()){
+            g.adaugarePostare(p);
+            k = 1;
+//            titluGrupa = g.getTitleGroup();
+//            npGrupa = g.getNumeProfesorGroup();
+//            ppGrupa = g.getPrenumeProfesorGroup();
         }
     }
-    if (npGrupa == teacher.getNumeTeacher() && ppGrupa == teacher.getPrenumeTeacher()){
-        Group gt(0, " "," ", " ");
-        gt.setNumeProfesorGroup(npGrupa);
-        gt.setPrenumeProfesorGroup(ppGrupa);
-        gt.setTitleGroup(titluGrupa);
-        gt.setCodUnicGrupa(c);
-        gt.adaugarePostare(p);
-        for (const Group& g : grupe){
-            cout << g;
-            //aici nu imi afiseaza postarile
-        }
-        string rp;
-        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
-        cin >> rp;
-        if (rp == "C" || rp=="c") {
-            createGroup(teacher, grupe);
-        } else {
-            if (rp == "D" || rp == "d"){
-                deleteGroup(teacher, grupe);
-            } else {
-                cout << "Ai iesit!";
-            }
-        }
+    for (const Group& g : grupe){
+        cout << g;
+        //aici nu imi afiseaza postarile
+    }
+    if (k != 1) {
+        cout << "Nu ai autorizatie la aceasat clasa sau nu exista! Te rugam incearca alte optiuni" << endl;
+    }
+    string rp;
+    cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+    cin >> rp;
+    if (rp == "C" || rp=="c") {
+        createGroup(teacher, grupe);
     } else {
-        string rp;
-        cout << endl;
-        cout << "Nu ai autorizatie sa postezi in aceasta clasa, nu esti profesor! Te rugam continua cu alta optiune." << endl;
-        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
-        cin >> rp;
-        if (rp == "C" || rp=="c") {
-            createGroup(teacher, grupe);
+        if (rp == "D" || rp == "d"){
+            deleteGroup(teacher, grupe);
         } else {
-            if (rp == "D" || rp == "d"){
-                deleteGroup(teacher, grupe);
-            } else {
-                cout << "Ai iesit!";
-            }
+            cout << "Ai iesit!";
         }
     }
+//    if (npGrupa == teacher.getNumeTeacher() && ppGrupa == teacher.getPrenumeTeacher()){
+//        Group gt(0, " "," ", " ");
+//        gt.setNumeProfesorGroup(npGrupa);
+//        gt.setPrenumeProfesorGroup(ppGrupa);
+//        gt.setTitleGroup(titluGrupa);
+//        gt.setCodUnicGrupa(c);
+//        gt.adaugarePostare(p);
+//        for (const Group& g : grupe){
+//            cout << g;
+//            //aici nu imi afiseaza postarile
+//        }
+//        string rp;
+//        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+//        cin >> rp;
+//        if (rp == "C" || rp=="c") {
+//            createGroup(teacher, grupe);
+//        } else {
+//            if (rp == "D" || rp == "d"){
+//                deleteGroup(teacher, grupe);
+//            } else {
+//                cout << "Ai iesit!";
+//            }
+//        }
+//    } else {
+//        string rp;
+//        cout << endl;
+//        cout << "Nu ai autorizatie sa postezi in aceasta clasa, nu esti profesor! Te rugam continua cu alta optiune." << endl;
+//        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+//        cin >> rp;
+//        if (rp == "C" || rp=="c") {
+//            createGroup(teacher, grupe);
+//        } else {
+//            if (rp == "D" || rp == "d"){
+//                deleteGroup(teacher, grupe);
+//            } else {
+//                cout << "Ai iesit!";
+//            }
+//        }
+//    }
 }
 
 void exitGroup(Student& student, list<Group> grupe);

@@ -22,6 +22,7 @@ private:
     list<Student> studentiGrupa;
     list<Post*> posts;
     int nrStudenti;
+
 public:
 
     Group(int c, string t, string np, string pp): codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), nrStudenti(0) {}
