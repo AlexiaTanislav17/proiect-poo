@@ -9,157 +9,6 @@
 
 using namespace std;
 
-//class Student{
-//private:
-//    string nume;
-//    string prenume;
-//    string email;
-//    //list<Group> grupe;
-//public:
-//
-//    explicit Student(string n=" ", string p=" ", string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
-//
-//    ~Student() {
-//        nume.clear();
-//        prenume.clear();
-//        email.clear();
-//    }
-//
-//    //friend class Group;
-//
-//    void setNumeStudent(string n) { nume = std::move(n); }
-////    string getNumeStudent() { return nume; }
-//    void setPrenumeStudent(string p) { prenume = std::move(p); }
-////    string getPrenumeStudent() { return prenume; }
-//    void setEmailStudent(string e) { email = std::move(e); }
-////    string getEmailStudent() { return email; }
-//
-//    friend ostream& operator<<(ostream& out, const Student& student){
-//        out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;
-//        out << "Email: " << student.email << endl;
-//        return out;
-//    }
-//
-//    bool operator==(const Student& student) const{
-//        if (nume == student.nume && prenume == student.prenume && email == student.email){
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//};
-
-//
-//class Teacher{
-//private:
-//    string nume;
-//    string prenume;
-//    string email;
-//    // list<Group> grupe;
-//public:
-//
-//    explicit Teacher(std::string  n=" ", std::string p=" ", std::string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
-//
-//    ~Teacher() {
-//        nume.clear();
-//        prenume.clear();
-//        email.clear();
-//    }
-//
-//    //friend class Group;
-//
-//    void setNumeTeacher(string n) { nume = std::move(n); }
-//    string getNumeTeacher() { return nume; }
-//    void setPrenumeTeacher(string p) { prenume = std::move(p); }
-//    string getPrenumeTeacher() { return prenume; }
-//    void setEmailTeacher(string e) { email = std::move(e); }
-////    string getEmailTeacher() { return email; }
-//
-//};
-
-//
-//class Group{
-//private:
-//    int codUnic;
-//    string title;
-//    string numeProfesor;
-//    string prenumeProfesor;
-//    list<Student> studentiGrupa;
-//    int nrStudenti;
-//public:
-//
-//    Group(int c, string t, string np, string pp): codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), nrStudenti(0) {}
-//
-//    Group(const int &c, string t, string np, string pp, const list<Student> &ss):
-//    codUnic(c), title(std::move(t)), numeProfesor(std::move(np)), prenumeProfesor(std::move(pp)), studentiGrupa(ss), nrStudenti(0){}
-//
-//    Group(const Group &g): codUnic(g.codUnic), title(g.title), numeProfesor(g.numeProfesor), prenumeProfesor(g.prenumeProfesor), nrStudenti(g.nrStudenti) {}
-//
-//    ~Group() {
-//        codUnic = 0;
-//        title.clear();
-//        numeProfesor.clear();
-//        prenumeProfesor.clear();
-//        nrStudenti = 0;
-//        studentiGrupa.clear();
-//    }
-//
-//    friend class Student;
-//    friend class Teacher;
-//
-//    void setCodUnicGrupa(int c) { codUnic = c; }
-//    int getCodUnicGrupa() const{ return codUnic; }
-//    void setTitleGroup(string t) { title = std::move(t); }
-//    string getTitleGroup() { return title; }
-//    void setNumeProfesorGroup(string np) { numeProfesor = std::move(np); }
-//    string getNumeProfesorGroup() { return numeProfesor; }
-//    void setPrenumeProfesorGroup(string pp) { prenumeProfesor = std::move(pp); }
-//    string getPrenumeProfesorGroup() { return prenumeProfesor; }
-//    void intratInGrupa(){ nrStudenti++; }
-//    void iesitDinGrupa(){
-//        if (nrStudenti>0){
-//            nrStudenti--;
-//        }
-//    }
-//
-//    friend istream& operator>>(istream& in, Group& grupa){
-//        cout << "Titlu: ";
-//        in >>  grupa.title;
-//        cout << "Cod: ";
-//        in >> grupa.codUnic;
-//        return in;
-//    }
-//
-//    friend ostream& operator<<(ostream& out, const Group& grupa){
-//        out << "Clasa: " << grupa.title << endl;
-//        out << "Profesorul: " << grupa.numeProfesor << " " << grupa.prenumeProfesor << endl;
-//        out << "Codul: " << grupa.codUnic << endl;
-//        out << "Nr elevi inscrisi: " << grupa.nrStudenti << endl;
-//        return out;
-//    }
-//
-//    Group& operator=(const Group& grupa) {    //am pus const ca sa nu mai dea warning, sa asigur ca nu si schimba parametrul random
-//        if (this == &grupa) {
-//            return *this;
-//        }
-//        this->title = grupa.title;
-//        this->numeProfesor = grupa.numeProfesor;
-//        this->prenumeProfesor = grupa.prenumeProfesor;
-//        this->codUnic = grupa.codUnic;
-//        this->nrStudenti = grupa.nrStudenti;
-//        this->studentiGrupa = grupa.studentiGrupa;
-//        return *this;
-//    }
-//
-//    void operator+=(Student& student){
-//        this->studentiGrupa.push_back(student);
-//    }
-//
-//    void operator-=(const Student& student) {
-//        this->studentiGrupa.remove(student);
-//    }
-//};
-
 
 bool operator==(const Group& g1, const Group& g2) {
     if (g1.getCodUnicGrupa()== g2.getCodUnicGrupa()){
@@ -168,12 +17,13 @@ bool operator==(const Group& g1, const Group& g2) {
     return false;
 }
 
-void createAssignment(Teacher& teacher, const list<Group>& grupe);
+void createAssignment(Teacher& teacher, list<Group>& grupe);
+
+void createTest(Teacher& teacher, list<Group>& grupe);
 
 void deleteGroup(Teacher& teacher, list<Group> grupe);
 
 void createGroup(Teacher& teacher, list<Group> grupe) {
-    string rp;
     Group grupa(0, " ", " ", " ");
     grupa.setNumeProfesorGroup(teacher.getNumeTeacher());
     grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
@@ -183,7 +33,14 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
         cout << g;
     }
     cout << endl;
-    cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una, PA daca vrei sa creezi o postare sau orice altceva ca sa iesi!" << endl;
+    string rp;
+    cout << endl;
+    cout << "Apasa: " << "\n";
+    cout << "C pt a creea o clasa" << "\n";
+    cout << "D pt a sterge o clasa" << "\n";
+    cout << "PA pt a creea o postare de tip assignment" << "\n";
+    cout << "PT pt a crea o postare de tip test" << "\n";
+    cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
         createGroup(teacher, grupe);
@@ -195,7 +52,7 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
         createAssignment(teacher, grupe);
     }
     if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-        //createTest(teacher, grupe);
+        createTest(teacher, grupe);
     } else {
         cout << "Ai iesit!";
     }
@@ -254,82 +111,94 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
     }
 }
 
-void createAssignment(Teacher& teacher, const list<Group>& grupe) {
+void createAssignment(Teacher& teacher, list<Group>& grupe) {
     int c;
     int k = 0;
-    //string titluGrupa, npGrupa,  ppGrupa;
     Assignment a;
     Post *p = &a;
     p->citire(teacher);
     cout << "Introdu codul clasei careia vrei sa ii adaugi postarea: " << endl;
     cin >> c;
-    for (Group g : grupe){
+    for (Group& g : grupe){
         if (c == g.getCodUnicGrupa() && teacher.getNumeTeacher() == g.getNumeProfesorGroup() && g.getPrenumeProfesorGroup() == teacher.getPrenumeTeacher()){
             g.adaugarePostare(p);
             k = 1;
-//            titluGrupa = g.getTitleGroup();
-//            npGrupa = g.getNumeProfesorGroup();
-//            ppGrupa = g.getPrenumeProfesorGroup();
         }
     }
-    for (const Group& g : grupe){
+    for (Group& g : grupe){
         cout << g;
-        //aici nu imi afiseaza postarile
     }
     if (k != 1) {
         cout << "Nu ai autorizatie la aceasat clasa sau nu exista! Te rugam incearca alte optiuni" << endl;
     }
     string rp;
-    cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
+    cout << endl;
+    cout << "Apasa: " << "\n";
+    cout << "C pt a creea o clasa" << "\n";
+    cout << "D pt a sterge o clasa" << "\n";
+    cout << "PA pt a creea o postare de tip assignment" << "\n";
+    cout << "PT pt a crea o postare de tip test" << "\n";
+    cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
         createGroup(teacher, grupe);
+    }
+    if (rp == "D" || rp == "d"){
+        deleteGroup(teacher, grupe);
+    }
+    if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
+        createAssignment(teacher, grupe);
+    }
+    if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
+        createTest(teacher, grupe);
     } else {
-        if (rp == "D" || rp == "d"){
-            deleteGroup(teacher, grupe);
-        } else {
-            cout << "Ai iesit!";
+        cout << "Ai iesit!";
+    }
+}
+
+void createTest(Teacher& teacher, list<Group>& grupe) {
+    int c;
+    int k = 0;
+    Test t;
+    Post *p = &t;
+    p->citire(teacher);
+    cout << "Introdu codul clasei careia vrei sa ii adaugi postarea: " << endl;
+    cin >> c;
+    for (Group& g : grupe){
+        if (c == g.getCodUnicGrupa() && teacher.getNumeTeacher() == g.getNumeProfesorGroup() && g.getPrenumeProfesorGroup() == teacher.getPrenumeTeacher()){
+            g.adaugarePostare(p);
+            k = 1;
         }
     }
-//    if (npGrupa == teacher.getNumeTeacher() && ppGrupa == teacher.getPrenumeTeacher()){
-//        Group gt(0, " "," ", " ");
-//        gt.setNumeProfesorGroup(npGrupa);
-//        gt.setPrenumeProfesorGroup(ppGrupa);
-//        gt.setTitleGroup(titluGrupa);
-//        gt.setCodUnicGrupa(c);
-//        gt.adaugarePostare(p);
-//        for (const Group& g : grupe){
-//            cout << g;
-//            //aici nu imi afiseaza postarile
-//        }
-//        string rp;
-//        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
-//        cin >> rp;
-//        if (rp == "C" || rp=="c") {
-//            createGroup(teacher, grupe);
-//        } else {
-//            if (rp == "D" || rp == "d"){
-//                deleteGroup(teacher, grupe);
-//            } else {
-//                cout << "Ai iesit!";
-//            }
-//        }
-//    } else {
-//        string rp;
-//        cout << endl;
-//        cout << "Nu ai autorizatie sa postezi in aceasta clasa, nu esti profesor! Te rugam continua cu alta optiune." << endl;
-//        cout << "Apasa C pt a creea o clasa, D daca vrei sa stergi una sau orice altceva ca sa iesi!" << endl;
-//        cin >> rp;
-//        if (rp == "C" || rp=="c") {
-//            createGroup(teacher, grupe);
-//        } else {
-//            if (rp == "D" || rp == "d"){
-//                deleteGroup(teacher, grupe);
-//            } else {
-//                cout << "Ai iesit!";
-//            }
-//        }
-//    }
+    for (Group& g : grupe){
+        cout << g;
+    }
+    if (k != 1) {
+        cout << "Nu ai autorizatie la aceasat clasa sau nu exista! Te rugam incearca alte optiuni" << endl;
+    }
+    string rp;
+    cout << endl;
+    cout << "Apasa: " << "\n";
+    cout << "C pt a creea o clasa" << "\n";
+    cout << "D pt a sterge o clasa" << "\n";
+    cout << "PA pt a creea o postare de tip assignment" << "\n";
+    cout << "PT pt a crea o postare de tip test" << "\n";
+    cout << "orice altceva pt a iesi" << endl;
+    cin >> rp;
+    if (rp == "C" || rp=="c") {
+        createGroup(teacher, grupe);
+    }
+    if (rp == "D" || rp == "d"){
+        deleteGroup(teacher, grupe);
+    }
+    if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
+        createAssignment(teacher, grupe);
+    }
+    if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
+        createTest(teacher, grupe);
+    } else {
+        cout << "Ai iesit!";
+    }
 }
 
 void exitGroup(Student& student, list<Group> grupe);

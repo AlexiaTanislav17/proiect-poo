@@ -56,13 +56,13 @@ public:
     }
 
     void afisare() override {
-        cout << numeUser << " ";
+        cout << "Profesor: " << numeUser << " ";
         cout << prenumeUser << endl;
-        cout << titlu << endl;
-        cout << descriere << endl;
+        cout << "Titlu:" << titlu << endl;
+        cout << "Descriere: " << descriere << endl;
         cout << file << endl;
-        cout << dueDate << endl;
-        cout << grade << endl;
+        cout << "Due date: " << dueDate << endl;
+        cout << "Nota: 0/" << grade << endl;
     }
 
     Assignment& operator=(const Assignment& a) {

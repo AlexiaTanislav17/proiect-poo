@@ -47,19 +47,19 @@ public:
         cout << "Pana la ce ora pot studenti sa trimita rezolvarile testelor?";   //cred ca ar trb sa fac cumva un vector de teme postate in cls asta
         cin >> dueTime;
         cout << endl;
-        cout << "Care e maximul de puncte pe care il pot primi studentii pe acesta tema?";
+        cout << "Care e maximul de puncte pe care il pot primi studentii pe acest test?";
         cin >> grade;
         cout << endl;
     }
 
     void afisare() override {
-        cout << numeUser << " ";
+        cout << "Profesor: " << numeUser << " ";
         cout << prenumeUser << endl;
-        cout << titlu << endl;
-        cout << descriere << endl;
+        cout << "Titlu:" << titlu << endl;
+        cout << "Descriere: " << descriere << endl;
         cout << file << endl;
-        cout << dueTime << endl;
-        cout << grade << endl;
+        cout << "Due date: " << dueTime << endl;
+        cout << "Nota: 0/" << grade << endl;
     }
 
     Test& operator=(const Test& a) {
