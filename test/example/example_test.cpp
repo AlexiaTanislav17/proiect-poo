@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "example.h"
 #include "student.h"
-//#include "teacher.h"
+#include "teacher.h"
 //#include "group.h"
 //#include "post.h"
 //#include "assignment.h"
@@ -12,7 +12,7 @@ TEST(SuiteName, TestName) {
     // Other assertions: https://google.github.io/googletest/reference/assertions.html#boolean
 }
 
-//TEST(StudentTest, DefaultConstructor) {
+//TEST(StudentTest, DefaultConstructor) {  //da fail
 //    Student s;
 //    EXPECT_EQ(s.getNumeStudent(), "");
 //    EXPECT_EQ(s.getPrenumeStudent(), "");
@@ -44,7 +44,7 @@ TEST(StudentTest, EqualityOperator) {
     EXPECT_FALSE(s1 == s3);
 }
 
-//TEST(StudentTest, OutputOperator) {
+//TEST(StudentTest, OutputOperator) {    //da fail
 //    Student s("John", "Doe", "john.doe@example.com");
 //    std::ostringstream oss;
 //    oss << s;
@@ -52,42 +52,42 @@ TEST(StudentTest, EqualityOperator) {
 //    EXPECT_EQ(oss.str(), expectedOutput);
 //}
 
-//TEST(TeacherTest, DefaultConstructor) {
-//    Teacher t;
-//    EXPECT_EQ(t.getNumeTeacher(), "");
-//    EXPECT_EQ(t.getPrenumeTeacher(), "");
-//    EXPECT_EQ(t.getEmailTeacher(), "");
-//    EXPECT_EQ(t.getTotalGroups(), 0);
-//}
+TEST(TeacherTest, DefaultConstructor) {
+    Teacher t;
+    EXPECT_EQ(t.getNumeTeacher(), "");
+    EXPECT_EQ(t.getPrenumeTeacher(), "");
+    EXPECT_EQ(t.getEmailTeacher(), "");
+    EXPECT_EQ(t.getTotalGroups(), 0);
+}
 
-//TEST(TeacherTest, ParameterizedConstructor) {
-//    Teacher t("John", "Doe", "john.doe@example.com");
-//    EXPECT_EQ(t.getNumeTeacher(), "John");
-//    EXPECT_EQ(t.getPrenumeTeacher(), "Doe");
-//    EXPECT_EQ(t.getEmailTeacher(), "john.doe@example.com");
-//    EXPECT_EQ(t.getTotalGroups(), 0);
-//}
+TEST(TeacherTest, ParameterizedConstructor) {
+    Teacher t("John", "Doe", "john.doe@example.com");
+    EXPECT_EQ(t.getNumeTeacher(), "John");
+    EXPECT_EQ(t.getPrenumeTeacher(), "Doe");
+    EXPECT_EQ(t.getEmailTeacher(), "john.doe@example.com");
+    EXPECT_EQ(t.getTotalGroups(), 0);
+}
 
-//TEST(TeacherTest, SettersAndGetters) {
-//    Teacher t;
-//    t.setNumeTeacher("Jane");
-//    t.setPrenumeTeacher("Smith");
-//    t.setEmailTeacher("jane.smith@example.com");
-//    EXPECT_EQ(t.getNumeTeacher(), "Jane");
-//    EXPECT_EQ(t.getPrenumeTeacher(), "Smith");
-//    EXPECT_EQ(t.getEmailTeacher(), "jane.smith@example.com");
-//}
+TEST(TeacherTest, SettersAndGetters) {
+    Teacher t;
+    t.setNumeTeacher("Jane");
+    t.setPrenumeTeacher("Smith");
+    t.setEmailTeacher("jane.smith@example.com");
+    EXPECT_EQ(t.getNumeTeacher(), "Jane");
+    EXPECT_EQ(t.getPrenumeTeacher(), "Smith");
+    EXPECT_EQ(t.getEmailTeacher(), "jane.smith@example.com");
+}
 
-//TEST(TeacherTest, TotalGroups) {
-//    Teacher t;
-//    EXPECT_EQ(Teacher::getTotalGroups(), 0);
-//    Teacher::incrementTotalGroups();
-//    EXPECT_EQ(Teacher::getTotalGroups(), 1);
-//    Teacher::decrementTotalGroups();
-//    EXPECT_EQ(Teacher::getTotalGroups(), 0);
-//    Teacher::decrementTotalGroups(); // nu ar trb sa fie < 0
-//    EXPECT_EQ(t.getTotalGroups(), 0);
-//}
+TEST(TeacherTest, TotalGroups) {
+    Teacher t;
+    EXPECT_EQ(Teacher::getTotalGroups(), 0);
+    Teacher::incrementTotalGroups();
+    EXPECT_EQ(Teacher::getTotalGroups(), 1);
+    Teacher::decrementTotalGroups();
+    EXPECT_EQ(Teacher::getTotalGroups(), 0);
+    Teacher::decrementTotalGroups(); // nu ar trb sa fie < 0
+    EXPECT_EQ(t.getTotalGroups(), 0);
+}
 
 //TEST(GroupTest, DefaultConstructor) {
 //    Group g(123, "Title", "TeacherName", "TeacherSurname");
