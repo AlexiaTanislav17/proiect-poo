@@ -36,7 +36,7 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
     cin >> grupa;
     grupe.push_back(grupa);
     Teacher::incrementTotalGroups();
-    Teacher::afTotalGroups();
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g << "\n";
     }
@@ -95,7 +95,7 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
             gt.setCodUnicGrupa(c);
             grupe.remove(gt);
             Teacher::decrementTotalGroups();
-            Teacher::afTotalGroups();
+            teacher.afTotalGroups();
             for (Group& g : grupe){
                 cout << g;
             }
@@ -184,7 +184,7 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
             k = 1;
         }
     }
-    Teacher::afTotalGroups();
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -238,7 +238,7 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
             k = 1;
         }
     }
-    Teacher::afTotalGroups();
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -297,7 +297,7 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
             }
         }
     }
-    Teacher::afTotalGroups();
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -366,7 +366,7 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
             }
         }
     }
-    Teacher::afTotalGroups();
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }

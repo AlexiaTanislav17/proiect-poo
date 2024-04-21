@@ -42,7 +42,7 @@ public:
             totalGroups--;
         }
     }
-    static void afTotalGroups()
+    void afTotalGroups()
     {
         cout << "Nr total de grupe create de tine: " << Teacher::totalGroups << endl;
     }

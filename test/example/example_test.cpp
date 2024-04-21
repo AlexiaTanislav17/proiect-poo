@@ -85,7 +85,7 @@ TEST(TeacherTest, TotalGroups) {
     EXPECT_EQ(Teacher::getTotalGroups(), 1);
     Teacher::decrementTotalGroups();
     EXPECT_EQ(Teacher::getTotalGroups(), 0);
-    Teacher::decrementTotalGroups(); // decrementTotalGroups() nu ar trebui să scadă sub 0
+    Teacher::decrementTotalGroups(); // nu ar trb sa fie < 0
     EXPECT_EQ(Teacher::getTotalGroups(), 0);
 }
 
