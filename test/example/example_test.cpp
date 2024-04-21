@@ -110,13 +110,13 @@ TEST(GroupTest, IncrementAndDecrementStudents) {
     EXPECT_EQ(g.getNrStudenti(), 0);
 }
 
-//TEST(GroupTest, OutputOperator) {
-//    Group g(123, "Title", "TeacherName", "TeacherSurname");
-//    std::ostringstream oss;
-//    oss << g;
-//    std::string expectedOutput = "Clasa: Title\nProfesorul: TeacherName TeacherSurname\nCodul: 123\nNr elevi inscrisi: 0\n";
-//    EXPECT_EQ(oss.str(), expectedOutput);
-//}
+TEST(GroupTest, OutputOperator) {
+    Group g(123, "Title", "TeacherName", "TeacherSurname");
+    std::ostringstream oss;
+    oss << g;
+    std::string expectedOutput = "Clasa: Title\nProfesorul: TeacherName TeacherSurname\nCodul: 123\nNr elevi inscrisi: 0\n";
+    EXPECT_EQ(oss.str(), expectedOutput);
+}
 
 
 //TEST(PostTest, DefaultConstructor) {
