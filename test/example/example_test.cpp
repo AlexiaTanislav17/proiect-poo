@@ -101,15 +101,15 @@ TEST(GroupTest, DefaultConstructor) {
     EXPECT_EQ(g.getPosts().size(), 0);
 }
 
-//TEST(GroupTest, IncrementAndDecrementStudents) {
-//    Group g(123, "Title", "TeacherName", "TeacherSurname");
-//    EXPECT_EQ(g.getNrStudenti(), 0);
-//    g.intratInGrupa();
-//    EXPECT_EQ(g.getNrStudenti(), 1);
-//    g.iesitDinGrupa();
-//    EXPECT_EQ(g.getNrStudenti(), 0);
-//}
-//
+TEST(GroupTest, IncrementAndDecrementStudents) {
+    Group g(123, "Title", "TeacherName", "TeacherSurname");
+    EXPECT_EQ(g.getNrStudenti(), 0);
+    g.intratInGrupa();
+    EXPECT_EQ(g.getNrStudenti(), 1);
+    g.iesitDinGrupa();
+    EXPECT_EQ(g.getNrStudenti(), 0);
+}
+
 //TEST(GroupTest, OutputOperator) {
 //    Group g(123, "Title", "TeacherName", "TeacherSurname");
 //    std::ostringstream oss;
