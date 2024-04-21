@@ -27,7 +27,7 @@ void deletePost(Teacher& teacher, list<Group>& grupe);
 
 void modifyDuePost(Teacher& teacher, list<Group>& grupe);
 
-void deleteGroup(Teacher& teacher, list<Group> grupe);
+void deleteGroup(Teacher& teacher, list<Group>& grupe);
 
 void createGroup(Teacher& teacher, list<Group> grupe) {
     Group grupa(0, " ", " ", " ");
@@ -74,7 +74,7 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
     }
 }
 
-void deleteGroup(Teacher& teacher, list<Group> grupe){
+void deleteGroup(Teacher& teacher, list<Group>& grupe){
     int c;
     string titluGrupa, npGrupa,  ppGrupa;
     cout << "Introdu codul clasei pe care vrei sa o stergi: " << endl;
