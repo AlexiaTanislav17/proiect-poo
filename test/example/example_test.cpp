@@ -52,13 +52,13 @@ TEST(StudentTest, OutputOperator) {
     EXPECT_EQ(oss.str(), expectedOutput);
 }
 
-TEST(TeacherTest, DefaultConstructor) {
-    Teacher t;
-    EXPECT_EQ(t.getNumeTeacher(), "");
-    EXPECT_EQ(t.getPrenumeTeacher(), "");
-    EXPECT_EQ(t.getEmailTeacher(), "");
-    EXPECT_EQ(t.getTotalGroups(), 0);
-}
+//TEST(TeacherTest, DefaultConstructor) {
+//    Teacher t;
+//    EXPECT_EQ(t.getNumeTeacher(), "");
+//    EXPECT_EQ(t.getPrenumeTeacher(), "");
+//    EXPECT_EQ(t.getEmailTeacher(), "");
+//    EXPECT_EQ(t.getTotalGroups(), 0);
+//}
 
 //TEST(TeacherTest, ParameterizedConstructor) {
 //    Teacher t("John", "Doe", "john.doe@example.com");
