@@ -148,6 +148,7 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
             k = 1;
         }
     }
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -201,6 +202,7 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
             k = 1;
         }
     }
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -259,6 +261,7 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
             }
         }
     }
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -327,6 +330,7 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
             }
         }
     }
+    teacher.afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
