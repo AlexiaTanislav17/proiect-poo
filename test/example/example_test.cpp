@@ -20,26 +20,26 @@ TEST(SuiteName, TestName) {
 //}
 
 TEST(StudentTest, ParameterizedConstructor) {
-    Student s("John", "Doe", "john.doe@example.com");
-    EXPECT_EQ(s.getNumeStudent(), "John");
-    EXPECT_EQ(s.getPrenumeStudent(), "Doe");
-    EXPECT_EQ(s.getEmailStudent(), "john.doe@example.com");
+    Student s("Marian", "Popescu", "marian.popescu@example.com");
+    EXPECT_EQ(s.getNumeStudent(), "Marian");
+    EXPECT_EQ(s.getPrenumeStudent(), "Popescu");
+    EXPECT_EQ(s.getEmailStudent(), "marian.popescu@example.com");
 }
 
 TEST(StudentTest, SettersAndGetters) {
     Student s;
-    s.setNumeStudent("Jane");
-    s.setPrenumeStudent("Smith");
-    s.setEmailStudent("jane.smith@example.com");
-    EXPECT_EQ(s.getNumeStudent(), "Jane");
-    EXPECT_EQ(s.getPrenumeStudent(), "Smith");
-    EXPECT_EQ(s.getEmailStudent(), "jane.smith@example.com");
+    s.setNumeStudent("Maria");
+    s.setPrenumeStudent("Florina");
+    s.setEmailStudent("maria.florina@example.com");
+    EXPECT_EQ(s.getNumeStudent(), "Maria");
+    EXPECT_EQ(s.getPrenumeStudent(), "Florina");
+    EXPECT_EQ(s.getEmailStudent(), "maria.florina@example.com");
 }
 
 TEST(StudentTest, EqualityOperator) {
-    Student s1("John", "Doe", "john.doe@example.com");
-    Student s2("John", "Doe", "john.doe@example.com");
-    Student s3("Jane", "Smith", "jane.smith@example.com");
+    Student s1("Marian", "Popescu", "marian.popescu@example.com");
+    Student s2("Marian", "Popescu", "marian.popescu@example.com");
+    Student s3("Maria", "Florina", "maria.florina@example.com");
     EXPECT_TRUE(s1 == s2);
     EXPECT_FALSE(s1 == s3);
 }
@@ -119,6 +119,7 @@ TEST(GroupTest, OutputOperator) {
 }
 
 
+
 TEST(PostTest, DefaultConstructor) {
     Post* post = new Assignment();
     EXPECT_EQ(post->getTitlu(), "");
@@ -126,7 +127,7 @@ TEST(PostTest, DefaultConstructor) {
 }
 
 TEST(PostTest, ParameterizedConstructor) {
-    Post* post = new Assignment("Assignment1", "Description1", "John", "Doe");
+    Post* post = new Assignment("Assignment1", "Description1", "Popescu", "Marian");
     EXPECT_EQ(post->getTitlu(), "Assignment1");
     EXPECT_EQ(post->getDescriere(), "Description1");
     delete post;
@@ -141,17 +142,17 @@ TEST(PostTest, SettersAndGetters) {
     delete post;
 }
 
-//TEST(PostTest, AssignmentOperator) {
-//    Post* post1 = new Assignment("Assignment1", "Description1", "John", "Doe");
-//    Post* post2 = new Assignment();
-//    *post2 = *post1;
-//    EXPECT_EQ(post2->getTitlu(), "Assignment1");
-//    EXPECT_EQ(post2->getDescriere(), "Description1");
-//    EXPECT_EQ(post2->getNumeUser(), "John");
-//    EXPECT_EQ(post2->getPrenumeUser(), "Doe");
-//    delete post1;
-//    delete post2;
-//}
+TEST(PostTest, AssignmentOperator) {
+    Post* post1 = new Assignment("Assignment1", "Description1", "John", "Doe");
+    Post* post2 = new Assignment();
+    *post2 = *post1;
+    EXPECT_EQ(post2->getTitlu(), "Assignment1");
+    EXPECT_EQ(post2->getDescriere(), "Description1");
+    EXPECT_EQ(post2->getNumeUser(), "Popescu");
+    EXPECT_EQ(post2->getPrenumeUser(), "Marian");
+    delete post1;
+    delete post2;
+}
 
 
 
