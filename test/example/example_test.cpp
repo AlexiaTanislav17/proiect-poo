@@ -2,7 +2,7 @@
 #include "example.h"
 #include "student.h"
 #include "teacher.h"
-//#include "group.h"
+#include "group.h"
 //#include "post.h"
 //#include "assignment.h"
 //#include "test.h"
@@ -53,7 +53,7 @@ TEST(StudentTest, EqualityOperator) {
 //}
 
 
-//TEST(TeacherTest, DefaultConstructor) {
+//TEST(TeacherTest, DefaultConstructor) {  //nu merge niciuna din cauza Teacher::oriceFunctie
 //    Teacher t;
 //    EXPECT_EQ(t.getNumeTeacher(), "");
 //    EXPECT_EQ(t.getPrenumeTeacher(), "");
@@ -92,15 +92,15 @@ TEST(StudentTest, EqualityOperator) {
 
 
 
-//TEST(GroupTest, DefaultConstructor) {
-//    Group g(123, "Title", "TeacherName", "TeacherSurname");
-//    EXPECT_EQ(g.getCodUnicGrupa(), 123);
-//    EXPECT_EQ(g.getTitleGroup(), "Title");
-//    EXPECT_EQ(g.getNumeProfesorGroup(), "TeacherName");
-//    EXPECT_EQ(g.getPrenumeProfesorGroup(), "TeacherSurname");
-//    EXPECT_EQ(g.getPosts().size(), 0);
-//}
-//
+TEST(GroupTest, DefaultConstructor) {
+    Group g(123, "Title", "TeacherName", "TeacherSurname");
+    EXPECT_EQ(g.getCodUnicGrupa(), 123);
+    EXPECT_EQ(g.getTitleGroup(), "Title");
+    EXPECT_EQ(g.getNumeProfesorGroup(), "TeacherName");
+    EXPECT_EQ(g.getPrenumeProfesorGroup(), "TeacherSurname");
+    EXPECT_EQ(g.getPosts().size(), 0);
+}
+
 //TEST(GroupTest, IncrementAndDecrementStudents) {
 //    Group g(123, "Title", "TeacherName", "TeacherSurname");
 //    EXPECT_EQ(g.getNrStudenti(), 0);
