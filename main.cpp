@@ -29,7 +29,7 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe);
 
 void deleteGroup(Teacher& teacher, list<Group>& grupe);
 
-void createGroup(Teacher& teacher, list<Group> grupe) {
+void createGroup(Teacher& teacher, list<Group>& grupe) {
     Group grupa(0, " ", " ", " ");
     grupa.setNumeProfesorGroup(teacher.getNumeTeacher());
     grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
@@ -97,7 +97,7 @@ void deleteGroup(Teacher& teacher, list<Group>& grupe){
             Teacher::decrementTotalGroups();
             teacher.afTotalGroups();
             for (Group& g : grupe){
-                cout << g;
+                cout << g << "\n";
             }
             string rp;
             cout << endl;
@@ -186,7 +186,7 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
     }
     teacher.afTotalGroups();
     for (Group& g : grupe){
-        cout << g;
+        cout << g << "\n";
     }
     if (k != 1) {
         cout << "Nu ai autorizatie la aceasat clasa sau nu exista! Te rugam incearca alte optiuni" << endl;
@@ -240,7 +240,7 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
     }
     teacher.afTotalGroups();
     for (Group& g : grupe){
-        cout << g;
+        cout << g << "\n";
     }
     if (k != 1) {
         cout << "Nu ai autorizatie la aceasat clasa sau nu exista! Te rugam incearca alte optiuni" << endl;
@@ -281,7 +281,6 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
 void deletePost(Teacher& teacher, list<Group>& grupe) {
     int c;
     int k = 0;
-    //Post p; //stiu ca e abstracta, let me cook
     cout << "Introdu codul clasei din care vrei sa stergi postarea: " << endl;
     cin >> c;
     for (Group& g : grupe){
@@ -299,7 +298,7 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
     }
     teacher.afTotalGroups();
     for (Group& g : grupe){
-        cout << g;
+        cout << g << "\n";
     }
     if (k != 1) {
         cout << "Nu ai autorizatie la aceasat clasa, nu exista clasa sau nu exista postarea! Te rugam incearca alte optiuni" << endl;
@@ -368,7 +367,7 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
     }
     teacher.afTotalGroups();
     for (Group& g : grupe){
-        cout << g;
+        cout << g << "\n";
     }
     if (k != 1) {
         cout << "Nu ai autorizatie la aceasat clasa, nu exista clasa sau nu exista postarea! Te rugam incearca alte optiuni" << endl;
@@ -413,7 +412,7 @@ void enterGroup(Student& student, list<Group> grupe) {
     string rp, titluGrupa, npGrupa, ppGrupa;
     Group gt(0, " ", " ", "");
     for (Group& grupa : grupe){
-        cout << grupa;
+        cout << grupa << "\n";
     }
     cout << "In ce clasa vrei sa te inscrii? Scrie codul acesteia!" << endl;
     cin >> c;
@@ -455,7 +454,7 @@ void exitGroup(Student& student, list<Group> grupe) {
     string rp, titluGrupa, npGrupa, ppGrupa;
     Group gt(0, " ", " ", "");
     for (Group& grupa : grupe){
-        cout << grupa;
+        cout << grupa << "\n";
     }
     cout << "Din ce clasa vrei sa iesi? Scrie codul acesteia!" << endl;
     cin >> c;
@@ -477,7 +476,7 @@ void exitGroup(Student& student, list<Group> grupe) {
     grupe.push_back(gt);
 
     for (Group& grupa : grupe){
-        cout << grupa;
+        cout << grupa << "\n";
     }
     cout << endl;
     cout << "Apasa I pt a intra intr-o clasa, E daca vrei sa iesi din una sau orice altceva ca sa iesi!" << endl;
@@ -493,7 +492,7 @@ void exitGroup(Student& student, list<Group> grupe) {
     }
 }
 
-void menu(const list<Group> &grupe) {
+void menu(list<Group> &grupe) {
     string tipCont, Nume, Prenume, Email, r;
 //
 //    Teacher teacher1("Marin", "Maricica", "m.m@gmail.com");
