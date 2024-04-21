@@ -32,7 +32,12 @@ public:
 
     friend class Teacher;
 
+//    void setFile(string f) { file = std::move(f); }
+//    string getFile() { return file; }
+//    void setGrade(int g) { grade = g; }
+//    int getGrade() const { return grade; }
     void setDueTime(string dt) { dueTime = std::move(dt); }
+//    string getDueTime() { return dueTime; }
 
     void citire(Teacher& t) override {
         setNumeUser(t.getNumeTeacher());

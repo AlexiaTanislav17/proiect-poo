@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "example.h"
 #include "student.h"
-#include "teacher.h"
+//#include "teacher.h"
 #include "group.h"
 #include "post.h"
 #include "assignment.h"
@@ -194,6 +194,34 @@ TEST(AssignmentTest, SettersAndGetters) {
     EXPECT_EQ(a.getDueDate(), "2024-04-30");
     EXPECT_EQ(a.getGrade(), 10);
 }
+
+TEST(AssignmentTest, SetDueTime) {
+    Assignment t;
+    t.setDueDate("15:00");
+    EXPECT_EQ(t.getDueDate(), "15:00");
+}
+
+//TEST(AssignmentTest, Citire) {
+//    Teacher teacher;
+//
+//    std::stringstream input;
+//    input << "Test Citire\n";
+//    input << "Descriere Test\n";
+//    input << "file_test.txt\n";
+//    input << "10:00\n";
+//    input << "10\n";
+//
+//    std::cin.rdbuf(input.rdbuf());
+//
+//    Assignment t;
+//    t.citire(teacher);
+//
+//    EXPECT_EQ(t.getTitlu(), "TestCitire");
+//    EXPECT_EQ(t.getDescriere(), "DescriereTest");
+//    EXPECT_EQ(t.getFile(), "file_test");
+//    EXPECT_EQ(t.getDueDate(), "10:00");
+//    EXPECT_EQ(t.getGrade(), 10);
+//}
 
 
 
