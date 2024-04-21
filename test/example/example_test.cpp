@@ -3,7 +3,7 @@
 #include "student.h"
 #include "teacher.h"
 #include "group.h"
-//#include "post.h"
+#include "post.h"
 //#include "assignment.h"
 //#include "test.h"
 
@@ -119,19 +119,19 @@ TEST(GroupTest, OutputOperator) {
 }
 
 
-//TEST(PostTest, DefaultConstructor) {
-//    Post* post = new Assignment();
-//    EXPECT_EQ(post->getTitlu(), "");
-//    delete post;
-//}
-//
+TEST(PostTest, DefaultConstructor) {
+    Post* post = new Assignment();
+    EXPECT_EQ(post->getTitlu(), "");
+    delete post;
+}
+
 //TEST(PostTest, ParameterizedConstructor) {
 //    Post* post = new Assignment("Assignment1", "Description1", "John", "Doe");
 //    EXPECT_EQ(post->getTitlu(), "Assignment1");
 //    EXPECT_EQ(post->getDescriere(), "Description1");
 //    delete post;
 //}
-//
+
 //TEST(PostTest, SettersAndGetters) {
 //    Post* post = new Assignment();
 //    post->setTitlu("Assignment1");
