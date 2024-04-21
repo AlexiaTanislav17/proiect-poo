@@ -88,7 +88,7 @@ TEST(StudentTest, OutputOperator) {
 //    Teacher::decrementTotalGroups(); // nu ar trb sa fie < 0
 //    EXPECT_EQ(t.getTotalGroups(), 0);
 //}
-//
+
 //TEST(GroupTest, DefaultConstructor) {
 //    Group g(123, "Title", "TeacherName", "TeacherSurname");
 //    EXPECT_EQ(g.getCodUnicGrupa(), 123);
