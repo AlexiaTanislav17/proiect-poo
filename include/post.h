@@ -10,6 +10,8 @@
 
 using namespace std;
 
+// am creat o clasa de baza noua in loc sa derivez deja de la o clasa existenta deoarece asa codul ar fi avut mai multa logica
+// si implementarea ar fi avut mai mult sens (si mai usor) decat daca derivam de exemplu GroupMath de la clasa de baza Group
 
 class Post {
 protected:
