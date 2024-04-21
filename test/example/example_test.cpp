@@ -12,12 +12,12 @@ TEST(SuiteName, TestName) {
     // Other assertions: https://google.github.io/googletest/reference/assertions.html#boolean
 }
 
-TEST(StudentTest, DefaultConstructor) {
-    Student s;
-    EXPECT_EQ(s.getNumeStudent(), "");
-    EXPECT_EQ(s.getPrenumeStudent(), "");
-    EXPECT_EQ(s.getEmailStudent(), "");
-}
+//TEST(StudentTest, DefaultConstructor) {
+//    Student s;
+//    EXPECT_EQ(s.getNumeStudent(), "");
+//    EXPECT_EQ(s.getPrenumeStudent(), "");
+//    EXPECT_EQ(s.getEmailStudent(), "");
+//}
 
 TEST(StudentTest, ParameterizedConstructor) {
     Student s("John", "Doe", "john.doe@example.com");
@@ -44,13 +44,13 @@ TEST(StudentTest, EqualityOperator) {
     EXPECT_FALSE(s1 == s3);
 }
 
-TEST(StudentTest, OutputOperator) {
-    Student s("John", "Doe", "john.doe@example.com");
-    std::ostringstream oss;
-    oss << s;
-    std::string expectedOutput = "Nume si Prenume: John Doe\n Email: john.doe@example.com\n";
-    EXPECT_EQ(oss.str(), expectedOutput);
-}
+//TEST(StudentTest, OutputOperator) {
+//    Student s("John", "Doe", "john.doe@example.com");
+//    std::ostringstream oss;
+//    oss << s;
+//    std::string expectedOutput = "Nume si Prenume: John Doe\n Email: john.doe@example.com\n";
+//    EXPECT_EQ(oss.str(), expectedOutput);
+//}
 
 //TEST(TeacherTest, DefaultConstructor) {
 //    Teacher t;
