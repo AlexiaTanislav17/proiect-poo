@@ -32,6 +32,8 @@ public:
 
     friend class Teacher;
 
+    void setDueTime(string dt) { dueTime = std::move(dt); }
+
     void citire(Teacher& t) override {
         setNumeUser(t.getNumeTeacher());
         setPrenumeUser(t.getPrenumeTeacher());

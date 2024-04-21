@@ -34,6 +34,8 @@ public:
 
     friend class Teacher;
 
+    void setDueDate(string dd) { dueDate = std::move(dd); }
+
     void citire(Teacher& t) override {
         setNumeUser(t.getNumeTeacher());
         setPrenumeUser(t.getPrenumeTeacher());

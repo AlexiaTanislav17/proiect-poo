@@ -24,6 +24,8 @@ void createTest(Teacher& teacher, list<Group>& grupe);
 
 void deletePost(Teacher& teacher, list<Group>& grupe);
 
+void modifyDuePost(Teacher& teacher, list<Group>& grupe);
+
 void deleteGroup(Teacher& teacher, list<Group> grupe);
 
 void createGroup(Teacher& teacher, list<Group> grupe) {
@@ -46,6 +48,7 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
     cout << "PA pt a creea o postare de tip assignment" << "\n";
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
@@ -62,6 +65,9 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
         deletePost(teacher, grupe);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe);
     } else {
         cout << "Ai iesit!";
     }
@@ -103,6 +109,7 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
     cout << "PA pt a creea o postare de tip assignment" << "\n";
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
@@ -119,6 +126,9 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
         deletePost(teacher, grupe);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe);
     } else {
         cout << "Ai iesit!";
     }
@@ -152,6 +162,7 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
     cout << "PA pt a creea o postare de tip assignment" << "\n";
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
@@ -168,6 +179,9 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
         deletePost(teacher, grupe);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe);
     } else {
         cout << "Ai iesit!";
     }
@@ -201,6 +215,7 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
     cout << "PA pt a creea o postare de tip assignment" << "\n";
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
@@ -217,6 +232,9 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
         deletePost(teacher, grupe);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe);
     } else {
         cout << "Ai iesit!";
     }
@@ -255,6 +273,7 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
     cout << "PA pt a creea o postare de tip assignment" << "\n";
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
@@ -271,6 +290,77 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
         deletePost(teacher, grupe);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe);
+    } else {
+        cout << "Ai iesit!";
+    }
+}
+
+void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
+    int c;
+    int k = 0;
+    cout << "Introdu codul clasei din care vrei sa modifici postarea: " << endl;
+    cin >> c;
+    for (Group& g : grupe){
+        if (c == g.getCodUnicGrupa() && teacher.getNumeTeacher() == g.getNumeProfesorGroup() && g.getPrenumeProfesorGroup() == teacher.getPrenumeTeacher()){
+            cout << "Introdu titlul postarii la care vrei sa modifici: " << endl;
+            string titluPostare;
+            cin >> titluPostare;
+            for (auto post : g.getPosts()) {
+                if (post->getTitlu() == titluPostare) {
+                    k = 1;
+                    if (Assignment* a = dynamic_cast<Assignment*>(post)) {
+                        string newDueDate;
+                        cout << "Introdu noul termen de predare: ";
+                        cin >> newDueDate;
+                        a->setDueDate(newDueDate);
+                    }
+                    if (Test* t = dynamic_cast<Test*>(post)) {
+                        string newDueTime;
+                        cout << "Introdu noul termen de predare: ";
+                        cin >> newDueTime;
+                        t->setDueTime(newDueTime);
+                    }
+                }
+            }
+        }
+    }
+    for (Group& g : grupe){
+        cout << g;
+    }
+    if (k != 1) {
+        cout << "Nu ai autorizatie la aceasat clasa, nu exista clasa sau nu exista postarea! Te rugam incearca alte optiuni" << endl;
+    }
+    string rp;
+    cout << endl;
+    cout << "Apasa: " << "\n";
+    cout << "C pt a creea o clasa" << "\n";
+    cout << "D pt a sterge o clasa" << "\n";
+    cout << "PA pt a creea o postare de tip assignment" << "\n";
+    cout << "PT pt a crea o postare de tip test" << "\n";
+    cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "orice altceva pt a iesi" << endl;
+    cin >> rp;
+    if (rp == "C" || rp=="c") {
+        createGroup(teacher, grupe);
+    }
+    if (rp == "D" || rp == "d"){
+        deleteGroup(teacher, grupe);
+    }
+    if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
+        createAssignment(teacher, grupe);
+    }
+    if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
+        createTest(teacher, grupe);
+    }
+    if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
+        deletePost(teacher, grupe);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe);
     } else {
         cout << "Ai iesit!";
     }
