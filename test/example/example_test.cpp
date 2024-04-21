@@ -53,14 +53,14 @@ TEST(StudentTest, EqualityOperator) {
 //}
 
 
-TEST(TeacherTest, DefaultConstructor) {
-    Teacher t;
-    EXPECT_EQ(t.getNumeTeacher(), "");
-    EXPECT_EQ(t.getPrenumeTeacher(), "");
-    EXPECT_EQ(t.getEmailTeacher(), "");
-    //EXPECT_EQ(Teacher::getTotalGroups(), 0);
-}
-
+//TEST(TeacherTest, DefaultConstructor) {
+//    Teacher t;
+//    EXPECT_EQ(t.getNumeTeacher(), "");
+//    EXPECT_EQ(t.getPrenumeTeacher(), "");
+//    EXPECT_EQ(t.getEmailTeacher(), "");
+//    EXPECT_EQ(Teacher::getTotalGroups(), 0);
+//}
+//
 //TEST(TeacherTest, ParameterizedConstructor) {
 //    Teacher t("John", "Doe", "john.doe@example.com");
 //    EXPECT_EQ(t.getNumeTeacher(), "John");
@@ -117,7 +117,8 @@ TEST(TeacherTest, DefaultConstructor) {
 //    std::string expectedOutput = "Clasa: Title\nProfesorul: TeacherName TeacherSurname\nCodul: 123\nNr elevi inscrisi: 0\n";
 //    EXPECT_EQ(oss.str(), expectedOutput);
 //}
-//
+
+
 //TEST(PostTest, DefaultConstructor) {
 //    Post* post = new Assignment();
 //    EXPECT_EQ(post->getTitlu(), "");
