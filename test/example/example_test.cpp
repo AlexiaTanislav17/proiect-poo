@@ -12,45 +12,45 @@ TEST(SuiteName, TestName) {
     // Other assertions: https://google.github.io/googletest/reference/assertions.html#boolean
 }
 
-//TEST(StudentTest, DefaultConstructor) {
-//    Student s;
-//    EXPECT_EQ(s.getNumeStudent(), "");
-//    EXPECT_EQ(s.getPrenumeStudent(), "");
-//    EXPECT_EQ(s.getEmailStudent(), "");
-//}
-//
-//TEST(StudentTest, ParameterizedConstructor) {
-//    Student s("John", "Doe", "john.doe@example.com");
-//    EXPECT_EQ(s.getNumeStudent(), "John");
-//    EXPECT_EQ(s.getPrenumeStudent(), "Doe");
-//    EXPECT_EQ(s.getEmailStudent(), "john.doe@example.com");
-//}
-//
-//TEST(StudentTest, SettersAndGetters) {
-//    Student s;
-//    s.setNumeStudent("Jane");
-//    s.setPrenumeStudent("Smith");
-//    s.setEmailStudent("jane.smith@example.com");
-//    EXPECT_EQ(s.getNumeStudent(), "Jane");
-//    EXPECT_EQ(s.getPrenumeStudent(), "Smith");
-//    EXPECT_EQ(s.getEmailStudent(), "jane.smith@example.com");
-//}
-//
-//TEST(StudentTest, EqualityOperator) {
-//    Student s1("John", "Doe", "john.doe@example.com");
-//    Student s2("John", "Doe", "john.doe@example.com");
-//    Student s3("Jane", "Smith", "jane.smith@example.com");
-//    EXPECT_TRUE(s1 == s2);
-//    EXPECT_FALSE(s1 == s3);
-//}
-//
-//TEST(StudentTest, OutputOperator) {
-//    Student s("John", "Doe", "john.doe@example.com");
-//    std::ostringstream oss;
-//    oss << s;
-//    std::string expectedOutput = "Nume si Prenume: John Doe\nEmail: john.doe@example.com\n";
-//    EXPECT_EQ(oss.str(), expectedOutput);
-//}
+TEST(StudentTest, DefaultConstructor) {
+    Student s;
+    EXPECT_EQ(s.getNumeStudent(), "");
+    EXPECT_EQ(s.getPrenumeStudent(), "");
+    EXPECT_EQ(s.getEmailStudent(), "");
+}
+
+TEST(StudentTest, ParameterizedConstructor) {
+    Student s("John", "Doe", "john.doe@example.com");
+    EXPECT_EQ(s.getNumeStudent(), "John");
+    EXPECT_EQ(s.getPrenumeStudent(), "Doe");
+    EXPECT_EQ(s.getEmailStudent(), "john.doe@example.com");
+}
+
+TEST(StudentTest, SettersAndGetters) {
+    Student s;
+    s.setNumeStudent("Jane");
+    s.setPrenumeStudent("Smith");
+    s.setEmailStudent("jane.smith@example.com");
+    EXPECT_EQ(s.getNumeStudent(), "Jane");
+    EXPECT_EQ(s.getPrenumeStudent(), "Smith");
+    EXPECT_EQ(s.getEmailStudent(), "jane.smith@example.com");
+}
+
+TEST(StudentTest, EqualityOperator) {
+    Student s1("John", "Doe", "john.doe@example.com");
+    Student s2("John", "Doe", "john.doe@example.com");
+    Student s3("Jane", "Smith", "jane.smith@example.com");
+    EXPECT_TRUE(s1 == s2);
+    EXPECT_FALSE(s1 == s3);
+}
+
+TEST(StudentTest, OutputOperator) {
+    Student s("John", "Doe", "john.doe@example.com");
+    std::ostringstream oss;
+    oss << s;
+    std::string expectedOutput = "Nume si Prenume: John Doe\n Email: john.doe@example.com\n";
+    EXPECT_EQ(oss.str(), expectedOutput);
+}
 
 //TEST(TeacherTest, DefaultConstructor) {
 //    Teacher t;
