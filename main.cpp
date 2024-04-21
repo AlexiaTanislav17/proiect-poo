@@ -36,7 +36,7 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
     cin >> grupa;
     grupe.push_back(grupa);
     Teacher::incrementTotalGroups();
-    teacher.afTotalGroups();
+    Teacher::afTotalGroups();
     for (Group& g : grupe){
         cout << g << "\n";
     }
@@ -70,7 +70,7 @@ void createGroup(Teacher& teacher, list<Group> grupe) {
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
         modifyDuePost(teacher, grupe);
     } else {
-        cout << "Ai iesit!";
+        cout << " ";
     }
 }
 
@@ -95,13 +95,13 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
             gt.setCodUnicGrupa(c);
             grupe.remove(gt);
             Teacher::decrementTotalGroups();
-            teacher.afTotalGroups();
+            Teacher::afTotalGroups();
             for (Group& g : grupe){
                 cout << g;
             }
             string rp;
             cout << endl;
-            cout << "Apasa: " << "\n";
+            cout << "Apasa:\n";
             cout << "C pt a creea o clasa" << "\n";
             cout << "D pt a sterge o clasa" << "\n";
             cout << "PA pt a creea o postare de tip assignment" << "\n";
@@ -128,7 +128,7 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
             if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
                 modifyDuePost(teacher, grupe);
             } else {
-                cout << "Ai iesit!";
+                cout << " ";
             }
         } else {
             cout << endl;
@@ -165,7 +165,7 @@ void deleteGroup(Teacher& teacher, list<Group> grupe){
         if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
             modifyDuePost(teacher, grupe);
         } else {
-            cout << "Ai iesit!";
+            cout << " ";
         }
     }
 }
@@ -184,7 +184,7 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
             k = 1;
         }
     }
-    teacher.afTotalGroups();
+    Teacher::afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -220,7 +220,7 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
         modifyDuePost(teacher, grupe);
     } else {
-        cout << "Ai iesit!";
+        cout << " ";
     }
 }
 
@@ -238,7 +238,7 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
             k = 1;
         }
     }
-    teacher.afTotalGroups();
+    Teacher::afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -274,7 +274,7 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
         modifyDuePost(teacher, grupe);
     } else {
-        cout << "Ai iesit!";
+        cout << " ";
     }
 }
 
@@ -297,7 +297,7 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
             }
         }
     }
-    teacher.afTotalGroups();
+    Teacher::afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -333,7 +333,7 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
         modifyDuePost(teacher, grupe);
     } else {
-        cout << "Ai iesit!";
+        cout << " ";
     }
 }
 
@@ -366,7 +366,7 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
             }
         }
     }
-    teacher.afTotalGroups();
+    Teacher::afTotalGroups();
     for (Group& g : grupe){
         cout << g;
     }
@@ -402,7 +402,7 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
         modifyDuePost(teacher, grupe);
     } else {
-        cout << "Ai iesit!";
+        cout << " ";
     }
 }
 
@@ -445,7 +445,7 @@ void enterGroup(Student& student, list<Group> grupe) {
         if (rp == "E" || rp == "e"){
             exitGroup(student, grupe);
         } else {
-            cout << "Ai iesit!";
+            cout << " ";
         }
     }
 }
@@ -488,7 +488,7 @@ void exitGroup(Student& student, list<Group> grupe) {
         if (rp == "E" || rp == "e"){
             exitGroup(student, grupe);
         } else {
-            cout << "Ai iesit!";
+            cout << " ";
         }
     }
 }

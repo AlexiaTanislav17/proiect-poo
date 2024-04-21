@@ -56,6 +56,7 @@ public:
     string getNumeProfesorGroup() { return numeProfesor; }
     void setPrenumeProfesorGroup(string pp) { prenumeProfesor = std::move(pp); }
     string getPrenumeProfesorGroup() { return prenumeProfesor; }
+    int getNrStudenti() { return nrStudenti;}
     list<Post *> getPosts() { return posts; }
     void intratInGrupa(){ nrStudenti++; }
     void iesitDinGrupa(){

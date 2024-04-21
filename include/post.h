@@ -31,18 +31,17 @@ public:
         prenumeUser.clear();
     }
 
-//    void setTitlu(string t) { titlu = std::move(t); }
+    void setTitlu(string t) { titlu = std::move(t); }
     string getTitlu() { return titlu; }
-//    void setDescriere(string d) { descriere = std::move(d); }
-//    string getDescriere() { return descriere; }
+    void setDescriere(string d) { descriere = std::move(d); }
+    string getDescriere() { return descriere; }
     virtual void setNumeUser(string nu) { numeUser = std::move(nu); }
-//    string getNumeuser() { return numeUser; }
+    string getNumeUser() { return numeUser; }
     virtual void setPrenumeUser(string pu) { prenumeUser = std::move(pu); }
-//    string getPrenumeUser() { return prenumeUser; }
+    string getPrenumeUser() { return prenumeUser; }
 
     virtual void citire(Teacher& t) =0;
     virtual void afisare() = 0;
-    //cred ca ar trb sa fac si alte functii virtuale
 
     Post& operator=(const Post& p) {
         if (this == &p) {

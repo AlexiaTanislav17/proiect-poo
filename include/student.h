@@ -27,11 +27,11 @@ public:
     //friend class Group;
 
     void setNumeStudent(string n) { nume = std::move(n); }
-//    string getNumeStudent() { return nume; }
+    string getNumeStudent() { return nume; }
     void setPrenumeStudent(string p) { prenume = std::move(p); }
-//    string getPrenumeStudent() { return prenume; }
+    string getPrenumeStudent() { return prenume; }
     void setEmailStudent(string e) { email = std::move(e); }
-//    string getEmailStudent() { return email; }
+    string getEmailStudent() { return email; }
 
     friend ostream& operator<<(ostream& out, const Student& student){
         out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;

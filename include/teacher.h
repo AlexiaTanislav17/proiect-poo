@@ -34,7 +34,7 @@ public:
     void setPrenumeTeacher(string p) { prenume = std::move(p); }
     string getPrenumeTeacher() { return prenume; }
     void setEmailTeacher(string e) { email = std::move(e); }
-//    string getEmailTeacher() { return email; }
+    string getEmailTeacher() { return email; }
     static int getTotalGroups() { return totalGroups; }
     static void incrementTotalGroups() { totalGroups++; }
     static void decrementTotalGroups() {
@@ -42,7 +42,7 @@ public:
             totalGroups--;
         }
     }
-    void afTotalGroups()
+    static void afTotalGroups()
     {
         cout << "Nr total de grupe create de tine: " << Teacher::totalGroups << endl;
     }
