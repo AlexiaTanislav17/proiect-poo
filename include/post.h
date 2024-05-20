@@ -22,39 +22,25 @@ protected:
 
 public:
 
-    Post(string t = "", string d = "", string nu = "", string pu = ""): titlu(std::move(t)), descriere(std::move(d)), numeUser(std::move(nu)), prenumeUser(std::move(pu)) {}
+    Post(string t = "", string d = "", string nu = "", string pu = "");
 
-    Post(const Post &p): titlu(p.titlu), descriere(p.descriere), numeUser(p.numeUser), prenumeUser(p.prenumeUser) {}
+    Post(const Post &p);
 
-    virtual ~Post() {
-        titlu.clear();
-        descriere.clear();
-        numeUser.clear();
-        prenumeUser.clear();
-    }
+    virtual ~Post();
 
-    void setTitlu(string t) { titlu = std::move(t); }
-    string getTitlu() { return titlu; }
-    void setDescriere(string d) { descriere = std::move(d); }
-    string getDescriere() { return descriere; }
-    virtual void setNumeUser(string nu) { numeUser = std::move(nu); }
-    string getNumeUser() { return numeUser; }
-    virtual void setPrenumeUser(string pu) { prenumeUser = std::move(pu); }
-    string getPrenumeUser() { return prenumeUser; }
+    void setTitlu(string t);
+    string getTitlu();
+    void setDescriere(string d);
+    string getDescriere();
+    virtual void setNumeUser(string nu);
+    string getNumeUser();
+    virtual void setPrenumeUser(string pu);
+    string getPrenumeUser();
 
-    virtual void citire(Teacher& t) =0;
+    virtual void citire(Teacher& t) = 0;
     virtual void afisare() = 0;
 
-    Post& operator=(const Post& p) {
-        if (this == &p) {
-            return *this;
-        }
-        this->titlu = p.titlu;
-        this->numeUser = p.numeUser;
-        this->prenumeUser = p.prenumeUser;
-        this->descriere = p.descriere;
-        return *this;
-    }
+    Post& operator=(const Post& p);
 
 };
 

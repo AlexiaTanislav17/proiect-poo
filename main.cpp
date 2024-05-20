@@ -349,7 +349,7 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
             for (auto post : g.getPosts()) {
                 if (post->getTitlu() == titluPostare) {
                     k = 1;
-                    if (Assignment* a = dynamic_cast<Assignment*>(post)) {
+                    if (auto* a = dynamic_cast<Assignment*>(post)) {
                         string newDueDate;
                         cout << "Introdu noul termen de predare: ";
                         cin >> newDueDate;

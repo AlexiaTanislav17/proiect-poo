@@ -161,6 +161,12 @@ add_executable(
         ${SOURCES}
         include/teacher.h
         include/group.h
+        src/student.cpp
+        src/teacher.cpp
+        src/group.cpp
+        src/post.cpp
+        src/test.cpp
+        src/assignment.cpp
 )
 
 target_link_libraries(

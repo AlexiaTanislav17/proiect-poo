@@ -16,35 +16,21 @@ private:
     //list<Group> grupe;
 public:
 
-    explicit Student(string n=" ", string p=" ", string e=" "): nume(std::move(n)), prenume(std::move(p)), email(std::move(e)) {}
+    explicit Student(string n=" ", string p=" ", string e=" ");
 
-    ~Student() {
-        nume.clear();
-        prenume.clear();
-        email.clear();
-    }
+    ~Student();
 
     //friend class Group;
 
-    void setNumeStudent(string n) { nume = std::move(n); }
-    string getNumeStudent() { return nume; }
-    void setPrenumeStudent(string p) { prenume = std::move(p); }
-    string getPrenumeStudent() { return prenume; }
-    void setEmailStudent(string e) { email = std::move(e); }
-    string getEmailStudent() { return email; }
+    void setNumeStudent(string n);
+    string getNumeStudent();
+    void setPrenumeStudent(string p);
+    string getPrenumeStudent();
+    void setEmailStudent(string e);
+    string getEmailStudent();
 
-    friend ostream& operator<<(ostream& out, const Student& student){
-        out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;
-        out << "Email: " << student.email << endl;
-        return out;
-    }
-
-    bool operator==(const Student& student) const{
-        if (nume == student.nume && prenume == student.prenume && email == student.email){
-            return true;
-        }
-        return false;
-    }
+    friend ostream& operator<<(ostream& out, const Student& student);
+    friend bool operator==(const Student& student1, const Student& student2);
 
 };
 
