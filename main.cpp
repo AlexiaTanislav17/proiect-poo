@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int Teacher::totalGroups = 0;
+//int Teacher::totalGroups = 0;
 
 bool operator==(const Group& g1, const Group& g2) {
     if (g1.getCodUnicGrupa()== g2.getCodUnicGrupa()){
