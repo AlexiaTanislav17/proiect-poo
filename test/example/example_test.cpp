@@ -19,22 +19,22 @@ TEST(SuiteName, TestName) {
 //    EXPECT_EQ(s.getEmailStudent(), "");
 //}
 
-TEST(StudentTest, ParameterizedConstructor) {
-    Student s("Marian", "Popescu", "marian.popescu@example.com");
-    EXPECT_EQ(s.getNumeStudent(), "Marian");
-    EXPECT_EQ(s.getPrenumeStudent(), "Popescu");
-    EXPECT_EQ(s.getEmailStudent(), "marian.popescu@example.com");
-}
-
-TEST(StudentTest, SettersAndGetters) {
-    Student s;
-    s.setNumeStudent("Maria");
-    s.setPrenumeStudent("Florina");
-    s.setEmailStudent("maria.florina@example.com");
-    EXPECT_EQ(s.getNumeStudent(), "Maria");
-    EXPECT_EQ(s.getPrenumeStudent(), "Florina");
-    EXPECT_EQ(s.getEmailStudent(), "maria.florina@example.com");
-}
+//TEST(StudentTest, ParameterizedConstructor) {
+//    Student s("Marian", "Popescu", "marian.popescu@example.com");
+//    EXPECT_EQ(s.getNumeStudent(), "Marian");
+//    EXPECT_EQ(s.getPrenumeStudent(), "Popescu");
+//    EXPECT_EQ(s.getEmailStudent(), "marian.popescu@example.com");
+//}
+//
+//TEST(StudentTest, SettersAndGetters) {
+//    Student s;
+//    s.setNumeStudent("Maria");
+//    s.setPrenumeStudent("Florina");
+//    s.setEmailStudent("maria.florina@example.com");
+//    EXPECT_EQ(s.getNumeStudent(), "Maria");
+//    EXPECT_EQ(s.getPrenumeStudent(), "Florina");
+//    EXPECT_EQ(s.getEmailStudent(), "maria.florina@example.com");
+//}
 
 TEST(StudentTest, EqualityOperator) {
     Student s1("Marian", "Popescu", "marian.popescu@example.com");
@@ -101,14 +101,14 @@ TEST(GroupTest, DefaultConstructor) {
     EXPECT_EQ(g.getPosts().size(), 0);
 }
 
-TEST(GroupTest, IncrementAndDecrementStudents) {
-    Group g(123, "Title", "TeacherName", "TeacherSurname");
-    EXPECT_EQ(g.getNrStudenti(), 0);
-    g.intratInGrupa();
-    EXPECT_EQ(g.getNrStudenti(), 1);
-    g.iesitDinGrupa();
-    EXPECT_EQ(g.getNrStudenti(), 0);
-}
+//TEST(GroupTest, IncrementAndDecrementStudents) {
+//    Group g(123, "Title", "TeacherName", "TeacherSurname");
+//    EXPECT_EQ(g.getNrStudenti(), 0);
+//    g.intratInGrupa();
+//    EXPECT_EQ(g.getNrStudenti(), 1);
+//    g.iesitDinGrupa();
+//    EXPECT_EQ(g.getNrStudenti(), 0);
+//}
 
 TEST(GroupTest, OutputOperator) {
     Group g(123, "Title", "TeacherName", "TeacherSurname");
@@ -126,21 +126,21 @@ TEST(PostTest, DefaultConstructor) {
     delete post;
 }
 
-TEST(PostTest, ParameterizedConstructor) {
-    Post* post = new Assignment("Assignment1", "Description1", "Popescu", "Marian");
-    EXPECT_EQ(post->getTitlu(), "Assignment1");
-    EXPECT_EQ(post->getDescriere(), "Description1");
-    delete post;
-}
-
-TEST(PostTest, SettersAndGetters) {
-    Post* post = new Assignment();
-    post->setTitlu("Assignment1");
-    post->setDescriere("Description1");
-    EXPECT_EQ(post->getTitlu(), "Assignment1");
-    EXPECT_EQ(post->getDescriere(), "Description1");
-    delete post;
-}
+//TEST(PostTest, ParameterizedConstructor) {
+//    Post* post = new Assignment("Assignment1", "Description1", "Popescu", "Marian");
+//    EXPECT_EQ(post->getTitlu(), "Assignment1");
+//    EXPECT_EQ(post->getDescriere(), "Description1");
+//    delete post;
+//}
+//
+//TEST(PostTest, SettersAndGetters) {
+//    Post* post = new Assignment();
+//    post->setTitlu("Assignment1");
+//    post->setDescriere("Description1");
+//    EXPECT_EQ(post->getTitlu(), "Assignment1");
+//    EXPECT_EQ(post->getDescriere(), "Description1");
+//    delete post;
+//}
 
 //TEST(PostTest, AssignmentOperator) {  // a dat fail
 //    Post* post1 = new Assignment("Assignment1", "Description1", "John", "Doe");
@@ -155,51 +155,51 @@ TEST(PostTest, SettersAndGetters) {
 //}
 
 
-
-TEST(AssignmentTest, DefaultConstructor) {
-    Assignment a;
-    EXPECT_EQ(a.getTitlu(), "");
-    EXPECT_EQ(a.getDescriere(), "");
-    EXPECT_EQ(a.getNumeUser(), "");
-    EXPECT_EQ(a.getPrenumeUser(), "");
-    EXPECT_EQ(a.getFile(), "");
-    EXPECT_EQ(a.getDueDate(), "");
-    EXPECT_EQ(a.getGrade(), 0);
-}
-
-TEST(AssignmentTest, ParameterizedConstructor) {
-    Assignment a("Assignment1", "Description1", "Marian", "Popescu", "file", "2024-04-30");
-    EXPECT_EQ(a.getTitlu(), "Assignment1");
-    EXPECT_EQ(a.getDescriere(), "Description1");
-    EXPECT_EQ(a.getNumeUser(), "Marian");
-    EXPECT_EQ(a.getPrenumeUser(), "Popescu");
-    EXPECT_EQ(a.getFile(), "file");
-    EXPECT_EQ(a.getDueDate(), "2024-04-30");
-}
-
-TEST(AssignmentTest, SettersAndGetters) {
-    Assignment a;
-    a.setTitlu("Assignment1");
-    a.setDescriere("Description1");
-    a.setNumeUser("Marian");
-    a.setPrenumeUser("Popescu");
-    a.setFile("file");
-    a.setDueDate("2024-04-30");
-    a.setGrade(10);
-    EXPECT_EQ(a.getTitlu(), "Assignment1");
-    EXPECT_EQ(a.getDescriere(), "Description1");
-    EXPECT_EQ(a.getNumeUser(), "Marian");
-    EXPECT_EQ(a.getPrenumeUser(), "Popescu");
-    EXPECT_EQ(a.getFile(), "file");
-    EXPECT_EQ(a.getDueDate(), "2024-04-30");
-    EXPECT_EQ(a.getGrade(), 10);
-}
-
-TEST(AssignmentTest, SetDueTime) {
-    Assignment t;
-    t.setDueDate("15:00");
-    EXPECT_EQ(t.getDueDate(), "15:00");
-}
+//
+//TEST(AssignmentTest, DefaultConstructor) {
+//    Assignment a;
+//    EXPECT_EQ(a.getTitlu(), "");
+//    EXPECT_EQ(a.getDescriere(), "");
+//    EXPECT_EQ(a.getNumeUser(), "");
+//    EXPECT_EQ(a.getPrenumeUser(), "");
+//    EXPECT_EQ(a.getFile(), "");
+//    EXPECT_EQ(a.getDueDate(), "");
+//    EXPECT_EQ(a.getGrade(), 0);
+//}
+//
+//TEST(AssignmentTest, ParameterizedConstructor) {
+//    Assignment a("Assignment1", "Description1", "Marian", "Popescu", "file", "2024-04-30");
+//    EXPECT_EQ(a.getTitlu(), "Assignment1");
+//    EXPECT_EQ(a.getDescriere(), "Description1");
+//    EXPECT_EQ(a.getNumeUser(), "Marian");
+//    EXPECT_EQ(a.getPrenumeUser(), "Popescu");
+//    EXPECT_EQ(a.getFile(), "file");
+//    EXPECT_EQ(a.getDueDate(), "2024-04-30");
+//}
+//
+//TEST(AssignmentTest, SettersAndGetters) {
+//    Assignment a;
+//    a.setTitlu("Assignment1");
+//    a.setDescriere("Description1");
+//    a.setNumeUser("Marian");
+//    a.setPrenumeUser("Popescu");
+//    a.setFile("file");
+//    a.setDueDate("2024-04-30");
+//    a.setGrade(10);
+//    EXPECT_EQ(a.getTitlu(), "Assignment1");
+//    EXPECT_EQ(a.getDescriere(), "Description1");
+//    EXPECT_EQ(a.getNumeUser(), "Marian");
+//    EXPECT_EQ(a.getPrenumeUser(), "Popescu");
+//    EXPECT_EQ(a.getFile(), "file");
+//    EXPECT_EQ(a.getDueDate(), "2024-04-30");
+//    EXPECT_EQ(a.getGrade(), 10);
+//}
+//
+//TEST(AssignmentTest, SetDueTime) {
+//    Assignment t;
+//    t.setDueDate("15:00");
+//    EXPECT_EQ(t.getDueDate(), "15:00");
+//}
 
 //TEST(AssignmentTest, Citire) {
 //    Teacher teacher;

@@ -31,7 +31,7 @@ public:
 //    void setTitlu(string t);
     string getTitlu();
 //    void setDescriere(string d);
-    string getDescriere();
+//    string getDescriere();
     virtual void setNumeUser(string nu);
 //    string getNumeUser();
     virtual void setPrenumeUser(string pu);

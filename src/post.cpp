@@ -17,7 +17,7 @@ Post::~Post() {                    //virtual
 //void Post::setTitlu(string t) { titlu = std::move(t); }
 string Post::getTitlu() { return titlu; }
 //void Post::setDescriere(string d) { descriere = std::move(d); }
-string Post::getDescriere() { return descriere; }
+//string Post::getDescriere() { return descriere; }
 void Post::setNumeUser(string nu) { numeUser = std::move(nu); }            //virtual
 //string Post::getNumeUser() { return numeUser; }
 void Post::setPrenumeUser(string pu) { prenumeUser = std::move(pu); }     //virtual
