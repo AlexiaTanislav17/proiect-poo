@@ -23,11 +23,11 @@ public:
     //friend class Group;
 
     void setNumeStudent(string n);
-    string getNumeStudent();
+//    string getNumeStudent();
     void setPrenumeStudent(string p);
-    string getPrenumeStudent();
+//    string getPrenumeStudent();
     void setEmailStudent(string e);
-    string getEmailStudent();
+//    string getEmailStudent();
 
     friend ostream& operator<<(ostream& out, const Student& student);
     friend bool operator==(const Student& student1, const Student& student2);

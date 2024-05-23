@@ -15,9 +15,9 @@ string Teacher::getNumeTeacher() { return nume; }
 void Teacher::setPrenumeTeacher(string p) { prenume = std::move(p); }
 string Teacher::getPrenumeTeacher() { return prenume; }
 void Teacher::setEmailTeacher(string e) { email = std::move(e); }
-string Teacher::getEmailTeacher() { return email; }
+//string Teacher::getEmailTeacher() { return email; }
 
-int Teacher::getTotalGroups() { return totalGroups; }      //static
+//int Teacher::getTotalGroups() { return totalGroups; }      //static
 void Teacher::incrementTotalGroups() { totalGroups++; }   //static
 void Teacher::decrementTotalGroups() {                   //static
     if (totalGroups > 0) {

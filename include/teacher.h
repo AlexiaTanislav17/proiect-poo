@@ -29,8 +29,8 @@ public:
     void setPrenumeTeacher(string p);
     string getPrenumeTeacher();
     void setEmailTeacher(string e);
-    string getEmailTeacher();
-    static int getTotalGroups();
+//    string getEmailTeacher();
+//    static int getTotalGroups();
     static void incrementTotalGroups();
     static void decrementTotalGroups();
     void afTotalGroups();

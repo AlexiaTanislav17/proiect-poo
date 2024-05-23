@@ -48,7 +48,7 @@ public:
     string getNumeProfesorGroup();
     void setPrenumeProfesorGroup(string pp);
     string getPrenumeProfesorGroup();
-    int getNrStudenti() const;
+//    int getNrStudenti() const;
     list<Post *> getPosts();
     void intratInGrupa();
     void iesitDinGrupa();

@@ -28,14 +28,14 @@ public:
 
     virtual ~Post();
 
-    void setTitlu(string t);
+//    void setTitlu(string t);
     string getTitlu();
-    void setDescriere(string d);
+//    void setDescriere(string d);
     string getDescriere();
     virtual void setNumeUser(string nu);
-    string getNumeUser();
+//    string getNumeUser();
     virtual void setPrenumeUser(string pu);
-    string getPrenumeUser();
+//    string getPrenumeUser();
 
     virtual void citire(Teacher& t) = 0;
     virtual void afisare() = 0;

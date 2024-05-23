@@ -26,12 +26,12 @@ public:
 
     friend class Teacher;
 
-    void setFile(string f);
-    string getFile();
-    void setGrade(int g);
-    int getGrade() const;
+//    void setFile(string f);
+//    string getFile();
+//    void setGrade(int g);
+//    int getGrade() const;
     void setDueDate(string dd);
-    string getDueDate();
+//    string getDueDate();
     void citire(Teacher& t) override;
     void afisare() override;
 

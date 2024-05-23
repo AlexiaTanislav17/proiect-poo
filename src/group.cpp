@@ -32,7 +32,7 @@ void Group::setNumeProfesorGroup(string np) { numeProfesor = std::move(np); }
 string Group::getNumeProfesorGroup() { return numeProfesor; }
 void Group::setPrenumeProfesorGroup(string pp) { prenumeProfesor = std::move(pp); }
 string Group::getPrenumeProfesorGroup() { return prenumeProfesor; }
-int Group::getNrStudenti() const{ return nrStudenti;}
+//int Group::getNrStudenti() const{ return nrStudenti;}
 list<Post *> Group::getPosts() { return posts; }
 void Group::intratInGrupa(){ nrStudenti++; }
 void Group::iesitDinGrupa(){

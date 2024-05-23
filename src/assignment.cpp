@@ -17,12 +17,12 @@ Assignment::~Assignment() {
 
 //friend class Teacher;
 
-void Assignment::setFile(string f) { file = std::move(f); }
-string Assignment::getFile() { return file; }
-void Assignment::setGrade(int g) { grade = g; }
-int Assignment::getGrade() const { return grade; }
+//void Assignment::setFile(string f) { file = std::move(f); }
+//string Assignment::getFile() { return file; }
+//void Assignment::setGrade(int g) { grade = g; }
+//int Assignment::getGrade() const { return grade; }
 void Assignment::setDueDate(string dd) { dueDate = std::move(dd); }
-string Assignment::getDueDate() { return dueDate; }
+//string Assignment::getDueDate() { return dueDate; }
 
 void Assignment::citire(Teacher& t) {
     setNumeUser(t.getNumeTeacher());

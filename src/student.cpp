@@ -10,11 +10,11 @@ Student::~Student() {
 }
 
 void Student::setNumeStudent(string n) { nume = std::move(n); }
-string Student::getNumeStudent() { return nume; }
+//string Student::getNumeStudent() { return nume; }
 void Student::setPrenumeStudent(string p) { prenume = std::move(p); }
-string Student::getPrenumeStudent() { return prenume; }
+//string Student::getPrenumeStudent() { return prenume; }
 void Student::setEmailStudent(string e) { email = std::move(e); }
-string Student::getEmailStudent() { return email; }
+//string Student::getEmailStudent() { return email; }
 
 std::ostream& operator<<(ostream& out, const Student& student){
     out << "Nume si Prenume: " << student.nume << " " << student.prenume << endl;

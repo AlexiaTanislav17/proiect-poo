@@ -14,14 +14,14 @@ Post::~Post() {                    //virtual
     prenumeUser.clear();
 }
 
-void Post::setTitlu(string t) { titlu = std::move(t); }
+//void Post::setTitlu(string t) { titlu = std::move(t); }
 string Post::getTitlu() { return titlu; }
-void Post::setDescriere(string d) { descriere = std::move(d); }
+//void Post::setDescriere(string d) { descriere = std::move(d); }
 string Post::getDescriere() { return descriere; }
 void Post::setNumeUser(string nu) { numeUser = std::move(nu); }            //virtual
-string Post::getNumeUser() { return numeUser; }
+//string Post::getNumeUser() { return numeUser; }
 void Post::setPrenumeUser(string pu) { prenumeUser = std::move(pu); }     //virtual
-string Post::getPrenumeUser() { return prenumeUser; }
+//string Post::getPrenumeUser() { return prenumeUser; }
 
 void Post::citire(Teacher& t) {};          //virtual
 void Post::afisare() {};                  //virtual
