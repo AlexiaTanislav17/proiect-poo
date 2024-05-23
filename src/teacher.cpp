@@ -10,6 +10,8 @@ Teacher::~Teacher() {
     totalGroups = 0;
 }
 
+int Teacher:: totalGroups = 0;   //poate fara 0?
+
 void Teacher::setNumeTeacher(string n) { nume = std::move(n); }
 string Teacher::getNumeTeacher() { return nume; }
 void Teacher::setPrenumeTeacher(string p) { prenume = std::move(p); }
