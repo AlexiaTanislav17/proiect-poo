@@ -7,6 +7,7 @@
 #include "group.h"
 #include "post.h"
 #include "assignment.h"
+#include "test.h"
 
 using namespace std;
 

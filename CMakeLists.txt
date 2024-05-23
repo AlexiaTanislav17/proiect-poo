@@ -163,10 +163,10 @@ add_executable(
         include/group.h
         src/student.cpp
         src/teacher.cpp
+        src/assignment.cpp
         src/group.cpp
         src/post.cpp
         src/test.cpp
-        src/assignment.cpp
 )
 
 target_link_libraries(
