@@ -23,7 +23,7 @@ void Post::setNumeUser(string nu) { numeUser = std::move(nu); }            //vir
 void Post::setPrenumeUser(string pu) { prenumeUser = std::move(pu); }     //virtual
 //string Post::getPrenumeUser() { return prenumeUser; }
 
-void Post::citire(Teacher& t) {};          //virtual
+void Post::citire(Teacher& ) {};          //virtual
 void Post::afisare() {};                  //virtual
 
 Post&Post:: operator=(const Post& p) {
