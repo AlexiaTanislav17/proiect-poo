@@ -98,7 +98,11 @@ FetchContent_MakeAvailable(googletest)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
+add_executable(${PROJECT_NAME} main.cpp ${SOURCES}
+        include/student.h
+        include/post.h
+        include/assignment.h
+        include/test.h)
 
 ###############################################################################
 
@@ -155,6 +159,14 @@ add_executable(
         ${HEADERS}
         ${TESTS}
         ${SOURCES}
+        include/teacher.h
+        include/group.h
+        src/student.cpp
+        src/teacher.cpp
+        src/assignment.cpp
+        src/group.cpp
+        src/post.cpp
+        src/test.cpp
 )
 
 target_link_libraries(
