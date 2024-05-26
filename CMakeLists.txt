@@ -102,7 +102,10 @@ add_executable(${PROJECT_NAME} main.cpp ${SOURCES}
         include/student.h
         include/post.h
         include/assignment.h
-        include/test.h)
+        include/test.h
+        include/fisier.h
+        include/fisierText.h
+        include/fisierVideo.h)
 
 ###############################################################################
 
@@ -167,6 +170,9 @@ add_executable(
         src/group.cpp
         src/post.cpp
         src/test.cpp
+        src/fisier.cpp
+        src/fisierText.cpp
+        src/fisierVideo.cpp
 )
 
 target_link_libraries(

@@ -2,12 +2,16 @@
 #include <stdexcept>
 #include <string>
 #include <list>
+#include <set>
 #include "student.h"
 #include "teacher.h"
 #include "group.h"
 #include "post.h"
 #include "assignment.h"
 #include "test.h"
+//#include "fisier.h"
+#include "fisierText.h"
+#include "fisierVideo.h"
 
 using namespace std;
 
@@ -23,27 +27,35 @@ bool operator<(const Group& g1, const Group& g2) {
     return g1.getTitleGroup() < g2.getTitleGroup();
 }
 
-void createAssignment(Teacher& teacher, list<Group>& grupe);
+bool operator<(const FisierText<int, int>& ft1, const FisierText<int, int>& ft2) {
+    return ft1.getTitlu() < ft2.getTitlu();
+}
 
-void createTest(Teacher& teacher, list<Group>& grupe);
+bool operator<(const FisierVideo<int, int>& fv1, const FisierVideo<int, int>& fv2) {
+    return fv1.getTitlu() < fv2.getTitlu();
+}
 
-void deletePost(Teacher& teacher, list<Group>& grupe);
 
-void modifyDuePost(Teacher& teacher, list<Group>& grupe);
+void addFisierText(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo);
 
-void deleteGroup(Teacher& teacher, list<Group>& grupe);
+void addFisierVideo(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo);
 
-void createGroup(Teacher& teacher, list<Group>& grupe) {
+void createAssignment(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo);
+
+void createTest(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo);
+
+void deletePost(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo);
+
+void modifyDuePost(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo);
+
+void deleteGroup(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo);
+
+void createGroup(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo) {
     Group grupa(0, " ", " ", " ");
     grupa.setNumeProfesorGroup(teacher.getNumeTeacher());
     grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
     cin >> grupa;
     grupe.push_back(grupa);
-
-//    std::list::sort(mMyClassVector,  {
-//            return a.mProperty < b.mProperty;
-//    });
-
     grupe.sort([](const Group & grupa1, const Group & grupa2)
                        {
                            if(grupa1.getTitleGroup() == grupa2.getTitleGroup())
@@ -52,6 +64,16 @@ void createGroup(Teacher& teacher, list<Group>& grupe) {
                        });
     Teacher::incrementTotalGroups();
     teacher.afTotalGroups();
+    for (auto& f : folderText) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrPag() << "\n";
+    }
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrMin() << "\n";
+    }
     for (Group& g : grupe){
         cout << g << "\n";
     }
@@ -65,31 +87,157 @@ void createGroup(Teacher& teacher, list<Group>& grupe) {
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
     cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+    cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
-        createGroup(teacher, grupe);
+        createGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "D" || rp == "d"){
-        deleteGroup(teacher, grupe);
+        deleteGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
-        createAssignment(teacher, grupe);
+        createAssignment(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-        createTest(teacher, grupe);
+        createTest(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
-        deletePost(teacher, grupe);
+        deletePost(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
-        modifyDuePost(teacher, grupe);
+        modifyDuePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+        addFisierText(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+        addFisierVideo(teacher, grupe, folderText, folderVideo);
     } else {
         cout << " ";
     }
 }
 
-void deleteGroup(Teacher& teacher, list<Group>& grupe){
+void addFisierText(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo) {
+    FisierText<int, int> ft("", 0,0);
+    ft.citire();
+    folderText.insert(ft);
+    for (auto& f : folderText) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrPag() << "\n";
+    }
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrMin() << "\n";
+    }
+    for (Group& g : grupe){
+        cout << g << "\n";
+    }
+    cout << endl;
+    string rp;
+    cout << endl;
+    cout << "Apasa: " << "\n";
+    cout << "C pt a creea o clasa" << "\n";
+    cout << "D pt a sterge o clasa" << "\n";
+    cout << "PA pt a creea o postare de tip assignment" << "\n";
+    cout << "PT pt a crea o postare de tip test" << "\n";
+    cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+    cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
+    cout << "orice altceva pt a iesi" << endl;
+    cin >> rp;
+    if (rp == "C" || rp=="c") {
+        createGroup(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "D" || rp == "d"){
+        deleteGroup(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
+        createAssignment(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
+        createTest(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
+        deletePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+        addFisierText(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+        addFisierVideo(teacher, grupe, folderText, folderVideo);
+    } else {
+        cout << " ";
+    }
+}
+
+void addFisierVideo(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo) {
+    FisierVideo<int, int> fv("", 0,0);
+    fv.citire();
+    folderVideo.insert(fv);
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrMin() << "\n";
+    }
+    for (auto& f : folderText) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrPag() << "\n";
+    }
+    for (Group& g : grupe){
+        cout << g << "\n";
+    }
+    cout << endl;
+    string rp;
+    cout << endl;
+    cout << "Apasa: " << "\n";
+    cout << "C pt a creea o clasa" << "\n";
+    cout << "D pt a sterge o clasa" << "\n";
+    cout << "PA pt a creea o postare de tip assignment" << "\n";
+    cout << "PT pt a crea o postare de tip test" << "\n";
+    cout << "DP pt a sterge o postare" << "\n";
+    cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+    cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
+    cout << "orice altceva pt a iesi" << endl;
+    cin >> rp;
+    if (rp == "C" || rp=="c") {
+        createGroup(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "D" || rp == "d"){
+        deleteGroup(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
+        createAssignment(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
+        createTest(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
+        deletePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
+        modifyDuePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+        addFisierText(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+        addFisierVideo(teacher, grupe, folderText, folderVideo);
+    } else {
+        cout << " ";
+    }
+}
+
+void deleteGroup(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo){
     int c;
     string titluGrupa, npGrupa,  ppGrupa;
     cout << "Introdu codul clasei pe care vrei sa o stergi: " << endl;
@@ -117,37 +265,55 @@ void deleteGroup(Teacher& teacher, list<Group>& grupe){
                        });
             Teacher::decrementTotalGroups();
             teacher.afTotalGroups();
+            for (auto& f : folderText) {
+                cout << f.getTitlu();
+                cout << f.getSize();
+                cout << f.getNrPag() << "\n";
+            }
+            for (auto& f : folderVideo) {
+                cout << f.getTitlu();
+                cout << f.getSize();
+                cout << f.getNrMin() << "\n";
+            }
             for (Group& g : grupe){
                 cout << g << "\n";
             }
             string rp;
             cout << endl;
-            cout << "Apasa:\n";
+            cout << "Apasa: " << "\n";
             cout << "C pt a creea o clasa" << "\n";
             cout << "D pt a sterge o clasa" << "\n";
             cout << "PA pt a creea o postare de tip assignment" << "\n";
             cout << "PT pt a crea o postare de tip test" << "\n";
             cout << "DP pt a sterge o postare" << "\n";
             cout << "MP pt a modifica timpul unei postari" << "\n";
+            cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+            cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
             cout << "orice altceva pt a iesi" << endl;
             cin >> rp;
             if (rp == "C" || rp=="c") {
-                createGroup(teacher, grupe);
+                createGroup(teacher, grupe, folderText, folderVideo);
             }
             if (rp == "D" || rp == "d"){
-                deleteGroup(teacher, grupe);
+                deleteGroup(teacher, grupe, folderText, folderVideo);
             }
             if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
-                createAssignment(teacher, grupe);
+                createAssignment(teacher, grupe, folderText, folderVideo);
             }
             if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-                createTest(teacher, grupe);
+                createTest(teacher, grupe, folderText, folderVideo);
             }
             if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
-                deletePost(teacher, grupe);
+                deletePost(teacher, grupe, folderText, folderVideo);
             }
             if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
-                modifyDuePost(teacher, grupe);
+                modifyDuePost(teacher, grupe, folderText, folderVideo);
+            }
+            if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+                addFisierText(teacher, grupe, folderText, folderVideo);
+            }
+            if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+                addFisierVideo(teacher, grupe, folderText, folderVideo);
             } else {
                 cout << " ";
             }
@@ -166,32 +332,40 @@ void deleteGroup(Teacher& teacher, list<Group>& grupe){
         cout << "PT pt a crea o postare de tip test" << "\n";
         cout << "DP pt a sterge o postare" << "\n";
         cout << "MP pt a modifica timpul unei postari" << "\n";
+        cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+        cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
         cout << "orice altceva pt a iesi" << endl;
         cin >> rp;
         if (rp == "C" || rp=="c") {
-            createGroup(teacher, grupe);
+            createGroup(teacher, grupe, folderText, folderVideo);
         }
         if (rp == "D" || rp == "d"){
-            deleteGroup(teacher, grupe);
+            deleteGroup(teacher, grupe, folderText, folderVideo);
         }
         if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
-            createAssignment(teacher, grupe);
+            createAssignment(teacher, grupe, folderText, folderVideo);
         }
         if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-            createTest(teacher, grupe);
+            createTest(teacher, grupe, folderText, folderVideo);
         }
         if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
-            deletePost(teacher, grupe);
+            deletePost(teacher, grupe, folderText, folderVideo);
         }
         if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
-            modifyDuePost(teacher, grupe);
+            modifyDuePost(teacher, grupe, folderText, folderVideo);
+        }
+        if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+            addFisierText(teacher, grupe, folderText, folderVideo);
+        }
+        if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+            addFisierVideo(teacher, grupe, folderText, folderVideo);
         } else {
             cout << " ";
         }
     }
 }
 
-void createAssignment(Teacher& teacher, list<Group>& grupe) {
+void createAssignment(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo) {
     int c;
     int k = 0;
     Assignment a;
@@ -206,6 +380,16 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
         }
     }
     teacher.afTotalGroups();
+    for (auto& f : folderText) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrPag() << "\n";
+    }
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrMin() << "\n";
+    }
     for (Group& g : grupe){
         cout << g << "\n";
     }
@@ -221,31 +405,39 @@ void createAssignment(Teacher& teacher, list<Group>& grupe) {
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
     cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+    cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
-        createGroup(teacher, grupe);
+        createGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "D" || rp == "d"){
-        deleteGroup(teacher, grupe);
+        deleteGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
-        createAssignment(teacher, grupe);
+        createAssignment(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-        createTest(teacher, grupe);
+        createTest(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
-        deletePost(teacher, grupe);
+        deletePost(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
-        modifyDuePost(teacher, grupe);
+        modifyDuePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+        addFisierText(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+        addFisierVideo(teacher, grupe, folderText, folderVideo);
     } else {
         cout << " ";
     }
 }
 
-void createTest(Teacher& teacher, list<Group>& grupe) {
+void createTest(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo) {
     int c;
     int k = 0;
     Test t;
@@ -260,6 +452,16 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
         }
     }
     teacher.afTotalGroups();
+    for (auto& f : folderText) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrPag() << "\n";
+    }
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrMin() << "\n";
+    }
     for (Group& g : grupe){
         cout << g << "\n";
     }
@@ -275,31 +477,39 @@ void createTest(Teacher& teacher, list<Group>& grupe) {
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
     cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+    cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
-        createGroup(teacher, grupe);
+        createGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "D" || rp == "d"){
-        deleteGroup(teacher, grupe);
+        deleteGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
-        createAssignment(teacher, grupe);
+        createAssignment(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-        createTest(teacher, grupe);
+        createTest(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
-        deletePost(teacher, grupe);
+        deletePost(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
-        modifyDuePost(teacher, grupe);
+        modifyDuePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+        addFisierText(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+        addFisierVideo(teacher, grupe, folderText, folderVideo);
     } else {
         cout << " ";
     }
 }
 
-void deletePost(Teacher& teacher, list<Group>& grupe) {
+void deletePost(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo) {
     int c;
     int k = 0;
     cout << "Introdu codul clasei din care vrei sa stergi postarea: " << endl;
@@ -318,6 +528,16 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
         }
     }
     teacher.afTotalGroups();
+    for (auto& f : folderText) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrPag() << "\n";
+    }
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrMin() << "\n";
+    }
     for (Group& g : grupe){
         cout << g << "\n";
     }
@@ -333,31 +553,39 @@ void deletePost(Teacher& teacher, list<Group>& grupe) {
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
     cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+    cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
-        createGroup(teacher, grupe);
+        createGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "D" || rp == "d"){
-        deleteGroup(teacher, grupe);
+        deleteGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
-        createAssignment(teacher, grupe);
+        createAssignment(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-        createTest(teacher, grupe);
+        createTest(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
-        deletePost(teacher, grupe);
+        deletePost(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
-        modifyDuePost(teacher, grupe);
+        modifyDuePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+        addFisierText(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+        addFisierVideo(teacher, grupe, folderText, folderVideo);
     } else {
         cout << " ";
     }
 }
 
-void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
+void modifyDuePost(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> &folderText, set<FisierVideo<int, int>> &folderVideo) {
     int c;
     int k = 0;
     cout << "Introdu codul clasei din care vrei sa modifici postarea: " << endl;
@@ -387,6 +615,16 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
         }
     }
     teacher.afTotalGroups();
+    for (auto& f : folderText) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrPag() << "\n";
+    }
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu();
+        cout << f.getSize();
+        cout << f.getNrMin() << "\n";
+    }
     for (Group& g : grupe){
         cout << g << "\n";
     }
@@ -402,25 +640,33 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe) {
     cout << "PT pt a crea o postare de tip test" << "\n";
     cout << "DP pt a sterge o postare" << "\n";
     cout << "MP pt a modifica timpul unei postari" << "\n";
+    cout << "AT pt a aduga un fisier text la folderul tau" << "\n";
+    cout << "AV pt a aduga un fisier video la folderul tau" << "\n";
     cout << "orice altceva pt a iesi" << endl;
     cin >> rp;
     if (rp == "C" || rp=="c") {
-        createGroup(teacher, grupe);
+        createGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "D" || rp == "d"){
-        deleteGroup(teacher, grupe);
+        deleteGroup(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pa" || rp =="PA" || rp == "Pa" || rp == "pA") {
-        createAssignment(teacher, grupe);
+        createAssignment(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "pt" || rp =="PT" || rp == "Pt" || rp == "pT") {
-        createTest(teacher, grupe);
+        createTest(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "dp" || rp =="DP" || rp == "Dp" || rp == "dP") {
-        deletePost(teacher, grupe);
+        deletePost(teacher, grupe, folderText, folderVideo);
     }
     if (rp == "mp" || rp =="MP" || rp == "Mp" || rp == "mP") {
-        modifyDuePost(teacher, grupe);
+        modifyDuePost(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "at" || rp =="AT" || rp == "At" || rp == "aT") {
+        addFisierText(teacher, grupe, folderText, folderVideo);
+    }
+    if (rp == "av" || rp =="AV" || rp == "Av" || rp == "aV") {
+        addFisierVideo(teacher, grupe, folderText, folderVideo);
     } else {
         cout << " ";
     }
@@ -561,10 +807,19 @@ void menu(list<Group> &grupe) {
             teacher.setPrenumeTeacher(Prenume);
             teacher.setEmailTeacher(Email);
 
+            set<FisierText<int, int>> folderText;
+            set<FisierVideo<int, int>> folderVideo;
+
+            FisierText<int, int> ft("readMe", 0,1);
+            folderText.insert(ft);
+
+            FisierVideo<int, int> fv("watchMe", 0,1);
+            folderVideo.insert(fv);
+
             cout << "Vrei sa creezi o clasa? Y/N" << endl;
             cin >> r;
             if (r=="Y" || r=="y"){
-                createGroup(teacher, grupe);
+                createGroup(teacher, grupe, folderText, folderVideo);
             } else {
                 cout << "Din pacate nu aveti ce sa faceti mai mult de atat, aplicatia e inca in progres. Va astept la urmatorul update!";
             }

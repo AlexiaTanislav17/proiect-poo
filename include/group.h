@@ -5,11 +5,15 @@
 #include <iostream>
 #include <string>
 #include <list>
+//#include <set>
 #include <utility>
 #include "student.h"
 #include "post.h"
 #include "assignment.h"
 #include "test.h"
+//#include "fisier.h"
+//#include "fisierText.h"
+//#include "fisierVideo.h"
 
 using namespace std;
 
@@ -22,6 +26,8 @@ private:
     string prenumeProfesor;
     list<Student> studentiGrupa;
     list<Post*> posts;
+//    set<FisierText<int, int>> folderText;
+//    set<FisierVideo<int, int>> folderVideo;
     int nrStudenti;
 
 public:
