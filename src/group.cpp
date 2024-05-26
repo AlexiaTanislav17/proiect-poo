@@ -27,7 +27,7 @@ Group::~Group() {
 void Group::setCodUnicGrupa(int c) { codUnic = c; }
 int Group::getCodUnicGrupa() const{ return codUnic; }
 void Group::setTitleGroup(string t) { title = std::move(t); }
-string Group::getTitleGroup() { return title; }
+string Group::getTitleGroup() const{ return title; }
 void Group::setNumeProfesorGroup(string np) { numeProfesor = std::move(np); }
 string Group::getNumeProfesorGroup() { return numeProfesor; }
 void Group::setPrenumeProfesorGroup(string pp) { prenumeProfesor = std::move(pp); }

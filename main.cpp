@@ -19,6 +19,10 @@ bool operator==(const Group& g1, const Group& g2) {
     return false;
 }
 
+bool operator<(const Group& g1, const Group& g2) {
+    return g1.getTitleGroup() < g2.getTitleGroup();
+}
+
 void createAssignment(Teacher& teacher, list<Group>& grupe);
 
 void createTest(Teacher& teacher, list<Group>& grupe);
@@ -35,6 +39,17 @@ void createGroup(Teacher& teacher, list<Group>& grupe) {
     grupa.setPrenumeProfesorGroup(teacher.getPrenumeTeacher());
     cin >> grupa;
     grupe.push_back(grupa);
+
+//    std::list::sort(mMyClassVector,  {
+//            return a.mProperty < b.mProperty;
+//    });
+
+    grupe.sort([](const Group & grupa1, const Group & grupa2)
+                       {
+                           if(grupa1.getTitleGroup() == grupa2.getTitleGroup())
+                               return grupa1 < grupa2;        //supraincarc <
+                           return grupa1.getTitleGroup() < grupa2.getTitleGroup();
+                       });
     Teacher::incrementTotalGroups();
     teacher.afTotalGroups();
     for (Group& g : grupe){
@@ -94,6 +109,12 @@ void deleteGroup(Teacher& teacher, list<Group>& grupe){
             gt.setTitleGroup(titluGrupa);
             gt.setCodUnicGrupa(c);
             grupe.remove(gt);
+            grupe.sort([](const Group & grupa1, const Group & grupa2)
+                       {
+                           if(grupa1.getTitleGroup() == grupa2.getTitleGroup())
+                               return grupa1 < grupa2;        //supraincarc <
+                           return grupa1.getTitleGroup() < grupa2.getTitleGroup();
+                       });
             Teacher::decrementTotalGroups();
             teacher.afTotalGroups();
             for (Group& g : grupe){

@@ -43,7 +43,7 @@ public:
     void setCodUnicGrupa(int c);
     int getCodUnicGrupa() const;
     void setTitleGroup(string t);
-    string getTitleGroup();
+    string getTitleGroup() const;
     void setNumeProfesorGroup(string np);
     string getNumeProfesorGroup();
     void setPrenumeProfesorGroup(string pp);
