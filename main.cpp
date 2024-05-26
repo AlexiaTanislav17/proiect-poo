@@ -123,14 +123,16 @@ void addFisierText(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int
     FisierText<int, int> ft("", 0,0);
     ft.citire();
     folderText.insert(ft);
+    cout << "Folderul tau de documente: "<< "\n";
     for (auto& f : folderText) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrPag() << "\n";
     }
+    cout << "Folderul tau de videouri: "<< "\n";
     for (auto& f : folderVideo) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrMin() << "\n";
     }
     for (Group& g : grupe){
@@ -182,15 +184,17 @@ void addFisierVideo(Teacher& teacher, list<Group>& grupe, set<FisierText<int, in
     FisierVideo<int, int> fv("", 0,0);
     fv.citire();
     folderVideo.insert(fv);
-    for (auto& f : folderVideo) {
-        cout << f.getTitlu();
-        cout << f.getSize();
-        cout << f.getNrMin() << "\n";
-    }
+    cout << "Folderul tau de documente: "<< "\n";
     for (auto& f : folderText) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrPag() << "\n";
+    }
+    cout << "Folderul tau de videouri: "<< "\n";
+    for (auto& f : folderVideo) {
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
+        cout << f.getNrMin() << "\n";
     }
     for (Group& g : grupe){
         cout << g << "\n";
@@ -265,14 +269,16 @@ void deleteGroup(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>>
                        });
             Teacher::decrementTotalGroups();
             teacher.afTotalGroups();
+            cout << "Folderul tau de documente: "<< "\n";
             for (auto& f : folderText) {
-                cout << f.getTitlu();
-                cout << f.getSize();
+                cout << f.getTitlu() << "  size:";
+                cout << f.getSize() << "kb  nr pag:";
                 cout << f.getNrPag() << "\n";
             }
+            cout << "Folderul tau de videouri: "<< "\n";
             for (auto& f : folderVideo) {
-                cout << f.getTitlu();
-                cout << f.getSize();
+                cout << f.getTitlu() << "  size:";
+                cout << f.getSize() << "kb  nr pag:";
                 cout << f.getNrMin() << "\n";
             }
             for (Group& g : grupe){
@@ -380,14 +386,16 @@ void createAssignment(Teacher& teacher, list<Group>& grupe, set<FisierText<int, 
         }
     }
     teacher.afTotalGroups();
+    cout << "Folderul tau de documente: "<< "\n";
     for (auto& f : folderText) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrPag() << "\n";
     }
+    cout << "Folderul tau de videouri: "<< "\n";
     for (auto& f : folderVideo) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrMin() << "\n";
     }
     for (Group& g : grupe){
@@ -452,14 +460,16 @@ void createTest(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> 
         }
     }
     teacher.afTotalGroups();
+    cout << "Folderul tau de documente: "<< "\n";
     for (auto& f : folderText) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrPag() << "\n";
     }
+    cout << "Folderul tau de videouri: "<< "\n";
     for (auto& f : folderVideo) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrMin() << "\n";
     }
     for (Group& g : grupe){
@@ -528,14 +538,16 @@ void deletePost(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int>> 
         }
     }
     teacher.afTotalGroups();
+    cout << "Folderul tau de documente: "<< "\n";
     for (auto& f : folderText) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrPag() << "\n";
     }
+    cout << "Folderul tau de videouri: "<< "\n";
     for (auto& f : folderVideo) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrMin() << "\n";
     }
     for (Group& g : grupe){
@@ -615,14 +627,16 @@ void modifyDuePost(Teacher& teacher, list<Group>& grupe, set<FisierText<int, int
         }
     }
     teacher.afTotalGroups();
+    cout << "Folderul tau de documente: " << "\n";
     for (auto& f : folderText) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrPag() << "\n";
     }
+    cout << "Folderul tau de videouri: "<< "\n";
     for (auto& f : folderVideo) {
-        cout << f.getTitlu();
-        cout << f.getSize();
+        cout << f.getTitlu() << "  size:";
+        cout << f.getSize() << "kb  nr pag:";
         cout << f.getNrMin() << "\n";
     }
     for (Group& g : grupe){
