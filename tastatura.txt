@@ -50,5 +50,13 @@ poimaine
 dp
 2323
 test
+av
+curs1
+34
+120
+at
+curs2
+13
+50
 k
 0
